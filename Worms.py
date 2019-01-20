@@ -7,7 +7,7 @@ import Asset
 import Constant
 import Init
 
-#Auteur : Antoine
+#Auteur: Antoine
 
 # Initialisation de la fenêtre du jeu
 screen = Init.init_game(Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT)
