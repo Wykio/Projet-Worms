@@ -1,5 +1,5 @@
 # -*-coding:Latin-1 -*
-
+import Asset
 
 def player_select_grenade(player):
     if player['hold_grenade']:
