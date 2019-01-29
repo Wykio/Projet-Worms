@@ -22,6 +22,8 @@ GROUND_COLOR = 191, 128, 64
 GREEN = 0, 255, 0
 RED = 255, 0, 0
 BLUE = 0, 0, 255
+DARK_RED = 200, 0, 0
+DARK_GREEN = 0, 200, 0
 
 # Position de départ joueurs
 PLAYER1_START_X = 200
