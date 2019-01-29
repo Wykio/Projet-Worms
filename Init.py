@@ -34,6 +34,7 @@ def init_game(width, height):
 def load_game():
     Asset.init_background()
     Asset.init_home_background()
+    Asset.init_pause_background()
     Asset.init_playerSpriteSheet()
     Asset.init_player1()
     Asset.init_player1_title()

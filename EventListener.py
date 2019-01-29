@@ -19,14 +19,44 @@ def game_pause():
 
     # screen.fill(Constant.WHITE)
 
-    # Affichage de l'image de l'accueil
-    Worms.screen.blit(Asset.home_background['surface'], Asset.home_background['rect'])
+    # Affichage de l'image de pause
+    Worms.screen.blit(Asset.pause_background['surface'], Asset.pause_background['rect'])
 
     # Affichage des bouttons
-    Asset.button("Return", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN,
-                 Constant.DARK_GREEN, "return")
-    Asset.button("Quit", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 50, 100, 50, Constant.RED,
-                 Constant.DARK_RED, "quit")
+    Asset.button("Return", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN, Constant.DARK_GREEN, "return")
+    Asset.button("Home", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 25, 100, 50, Constant.BLUE, Constant.DARK_BLUE, "home")
+    Asset.button("Quit", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 50, 100, 50, Constant.RED, Constant.DARK_RED, "quit")
+
+    # Mise à jour de l'affichage
+    pygame.display.update()
+    # Affiche l'image
+    pygame.display.flip()
+
+
+def game_settings():
+    import pygame
+    import sys
+    import Worms
+    import Init
+    import Constant
+    import Asset
+    # Boucle d'événement
+    for event in pygame.event.get():
+        # Si on détecte l'événement "quitter"
+        if event.type == pygame.QUIT:
+            # Décharge les modules de la mémoire
+            Init.quit_game()
+            # Quitte le programme
+            sys.exit()
+
+    # screen.fill(Constant.WHITE)
+
+    # Affichage de l'image de settings
+    Worms.screen.blit(Asset.pause_background['surface'], Asset.pause_background['rect'])
+
+    # Affichage des bouttons
+    Asset.button("Play", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN, Constant.DARK_GREEN, "play")
+    Asset.button("Home", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 50, 100, 50, Constant.BLUE, Constant.DARK_BLUE, "home")
 
     # Mise à jour de l'affichage
     pygame.display.update()
@@ -56,7 +86,7 @@ def game_home():
     Worms.screen.blit(Asset.home_background['surface'], Asset.home_background['rect'])
 
     # Affichage des bouttons
-    Asset.button("Play", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN, Constant.DARK_GREEN, "play")
+    Asset.button("Play", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN, Constant.DARK_GREEN, "settings")
     Asset.button("Quit", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 50, 100, 50, Constant.RED, Constant.DARK_RED, "quit")
 
     # Mise à jour de l'affichage

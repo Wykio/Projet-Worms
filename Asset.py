@@ -11,6 +11,7 @@ player2 = {'surface': None, 'rect': None, 'looking_left': True}
 player2_title = {'surface': None, 'rect': None}
 grenade = {'surface': None, 'rect': None}
 home_background = {'surface': None, 'rect': None}
+pause_background = {'surface': None, 'rect': None}
 
 
 def init_background():
@@ -21,6 +22,11 @@ def init_background():
 def init_home_background():
     home_background['surface'] = pygame.image.load("Assets/home_background.jpg")
     home_background['rect'] = home_background['surface'].get_rect()
+
+
+def init_pause_background():
+    pause_background['surface'] = pygame.image.load("Assets/pause_background.jpg")
+    pause_background['rect'] = pause_background['surface'].get_rect()
 
 
 # Dessiner les boutons et le texte
@@ -41,8 +47,11 @@ def button(msg, x, y, w, h, ic, ac, action =  None):
         pygame.draw.rect(Worms.screen, ac, (x, y, w, h))
 
         if click[0] == 1 and action != None:
-            if action == "play":
+            if action == "settings":
                 Worms.game_home = False
+                Worms.game_settings = True
+            elif action == "play":
+                Worms.game_settings = False
                 Worms.game_playing = True
             elif action == "quit":
                 Worms.game_home = False
@@ -52,6 +61,11 @@ def button(msg, x, y, w, h, ic, ac, action =  None):
                 sys.exit()
             elif action == "return":
                 Worms.game_pause = False
+            elif action == "home":
+                Worms.game_playing = False
+                Worms.game_pause = False
+                Worms.game_settings = False
+                Worms.game_home = True
     else:
         pygame.draw.rect(Worms.screen, ic, (x, y, w, h))
 

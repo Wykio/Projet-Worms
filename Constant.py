@@ -24,6 +24,7 @@ RED = 255, 0, 0
 BLUE = 0, 0, 255
 DARK_RED = 200, 0, 0
 DARK_GREEN = 0, 200, 0
+DARK_BLUE = 0, 0, 200
 
 # Position de départ joueurs
 PLAYER1_START_X = 200

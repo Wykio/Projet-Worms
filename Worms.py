@@ -25,5 +25,8 @@ while game_is_open:
     while game_home:
         EventListener.game_home()
 
+    while game_settings:
+        EventListener.game_settings()
+
     while game_playing:
         EventListener.game_playing()
