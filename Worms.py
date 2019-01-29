@@ -1,15 +1,12 @@
 # -*-coding:Latin-1 -*
+# Auteur: Antoine
+
 import pygame
 import sys
-
 import Animation
 import Asset
 import Constant
 import Init
-import Home
-import testHome
-
-#Auteur: Antoine
 
 # Initialisation de la fenêtre du jeu
 screen = Init.init_game()
@@ -19,12 +16,6 @@ info_screen = pygame.display.Info()
 # Chargement des assets
 Init.load_game()
 
-# Statut du jeu
-game_is_open = True
-game_home = True
-game_settings = False
-game_playing = False
-game_pause = False
 
 while 1:
     # Boucle d'événement
@@ -66,3 +57,4 @@ while 1:
 
     # Affiche l'image
     pygame.display.flip()
+

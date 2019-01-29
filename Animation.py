@@ -1,10 +1,9 @@
 # -*-coding:Latin-1 -*
+# Auteur: Antoine
+
 import pygame
+import Constant
 
-import Constant, Asset
-
-
-#Auteur : Antoine
 
 # Bouge un objet dans tout les sens
 def animate_rect(rect):

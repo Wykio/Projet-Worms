@@ -1,16 +1,16 @@
 # -*-coding:Latin-1 -*
-import pygame
+# Auteur: Antoine
 
+import pygame
 import Asset
 import Constant
 import testHome
 
 
-#Auteur : Antoine
-
 def init_scren_info():
     # Récupérer les informations de l'écran
     info_screen = pygame.display.Info()
+
 
 def init_game():
     testHome.initialize()
@@ -38,6 +38,7 @@ def init_game():
 
     return screen
 
+
 def load_game():
     Asset.init_background()
     Asset.init_playerSpriteSheet()
@@ -45,6 +46,7 @@ def load_game():
     Asset.init_player1_title()
     Asset.init_player2()
     Asset.init_player2_title()
+
 
 def quit_game():
     # Décharge de la mémoire le module display de Pygame

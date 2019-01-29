@@ -1,4 +1,6 @@
 # -*-coding:Latin-1 -*
+# Auteur: Antoine
+
 import pygame
 import Constant
 
@@ -10,6 +12,7 @@ player2 = {'surface': None, 'rect': None, 'looking_left': True}
 player2_title = {'surface': None, 'rect': None}
 grenade = {'surface': None, 'rect': None}
 home_background = {'surface': None, 'rect': None}
+
 
 def init_background():
     background['surface'] = pygame.image.load("Assets/beach_background.gif")
@@ -53,6 +56,7 @@ def init_player2_title():
     font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
     player2_title['surface'] = font.render('Player 2', False, Constant.BLUE)
     player2_title['rect'] = player2_title['surface'].get_rect()
+
 
 def init_grenade():
     grenade['surface'] = playerSpriteSheet['surface'].subsurface(Constant.PLAYER_BODY_RECT)

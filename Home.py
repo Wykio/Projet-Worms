@@ -7,9 +7,19 @@ import sys
 #Author : Benoit
 
 # Dessiner les boutons et le texte
+
+# Statut du jeu
+game_is_open = True
+game_home = True
+game_settings = False
+game_playing = False
+game_pause = False
+
+
 def text_objects(text, font):
     textSurface = font.render(text, True, Constant.BLACK)
     return textSurface, textSurface.get_rect()
+
 
 # Dessiner les boutons et le texte
 def button(msg, x, y, w, h, ic, ac, action =  None):

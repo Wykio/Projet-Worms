@@ -1,4 +1,5 @@
 # -*-coding:Latin-1 -*
+# Auteur: Antoine
 
 # format d'écran de type VGA
 SCREEN_WIDTH = 640

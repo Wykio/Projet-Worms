@@ -1,5 +1,8 @@
 # -*-coding:Latin-1 -*
+# Auteur: Antoine
+
 import Asset
+
 
 def player_select_grenade(player):
     if player['hold_grenade']:
@@ -14,6 +17,8 @@ def update_player_weapon(screen, player):
         Asset.grenade['rect'] = Asset.player1['rect'].move(7, 15)
         screen.blit(Asset.grenade['surface'], Asset.grenade['rect'])
 
-def grenade_launch(grenade):
 
+def grenade_launch(grenade):
     print("grenade Throw")
+
+
