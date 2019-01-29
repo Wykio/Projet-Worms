@@ -50,6 +50,8 @@ def button(msg, x, y, w, h, ic, ac, action =  None):
                 Init.quit_game()
                 # Quitte le programme
                 sys.exit()
+            elif action == "return":
+                Worms.game_pause = False
     else:
         pygame.draw.rect(Worms.screen, ic, (x, y, w, h))
 

@@ -23,8 +23,8 @@ def game_pause():
     Worms.screen.blit(Asset.home_background['surface'], Asset.home_background['rect'])
 
     # Affichage des bouttons
-    Asset.button("Play", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN,
-                 Constant.DARK_GREEN, "play")
+    Asset.button("Return", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN,
+                 Constant.DARK_GREEN, "return")
     Asset.button("Quit", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 50, 100, 50, Constant.RED,
                  Constant.DARK_RED, "quit")
 
@@ -85,7 +85,6 @@ def game_playing():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 Worms.game_pause = True
-                Worms.game_playing = False
 
             if event.key == pygame.K_LEFT:
                 Asset.player2 = Animation.player_move_left(Asset.player2)
@@ -98,6 +97,9 @@ def game_playing():
 
             if event.key == pygame.K_d:
                 Asset.player1 = Animation.player_move_right(Asset.player1)
+
+    while Worms.game_pause:
+        game_pause()
 
     Animation.update_player_title(Asset.player1, Asset.player1_title)
     Animation.update_player_title(Asset.player2, Asset.player2_title)

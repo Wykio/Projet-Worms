@@ -27,6 +27,3 @@ while game_is_open:
 
     while game_playing:
         EventListener.game_playing()
-
-    while game_pause:
-        EventListener.game_pause()
