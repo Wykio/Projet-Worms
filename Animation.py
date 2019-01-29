@@ -1,8 +1,7 @@
 # -*-coding:Latin-1 -*
 import pygame
 
-import Constant, Asset
-
+import Constant
 
 #Auteur : Antoine
 

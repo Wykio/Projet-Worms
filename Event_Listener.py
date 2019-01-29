@@ -1,56 +1,46 @@
-# -*-coding:Latin-1 -*
 import pygame
 import sys
 
-import Init
+import Worms
 import Constant
+import Init
 import Asset
 import Animation
 
-# Initialisation de la fenêtre du jeu
-screen = Init.init_game(Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT)
+#Auteur : BenoÃ®t
 
-# Chargement des assets
-Init.load_game()
-
-# Statut du jeu
-game_is_open = True
-game_home = True
-game_settings = False
-game_playing = False
-game_pause = False
-
-while game_is_open:
+def home_state():
+    global game_home
     while game_home:
-        # Boucle d'événement
+        # Boucle d'Ã©vÃ©nement
         for event in pygame.event.get():
-            # Si on détecte l'événement "quitter"
+            # Si on dÃ©tecte l'Ã©vÃ©nement "quitter"
             if event.type == pygame.QUIT:
-                # Décharge les modules de la mémoire
+                # DÃ©charge les modules de la mÃ©moire
                 Init.quit_game()
                 # Quitte le programme
                 sys.exit()
 
-        # Efface l'image
-        screen.fill(Constant.BLACK)
-        # Affichage de l'image de l'accueil sur l'écran
-        screen.blit(Asset.home_background['surface'], Asset.home_background['rect'])
+        # screen.fill(Constant.WHITE)
 
-        # Affichage des bouttons
+        # Affiche de l'accueil sur l'Ã©cran
+        Worms.screen.blit(Asset.home_background['surface'], Asset.home_background['rect'])
+
         Asset.button("Play", Constant.SCREEN_WIDTH / 2, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN, Constant.DARK_GREEN, "play")
         Asset.button("Quit", Constant.SCREEN_WIDTH / 2, Constant.SCREEN_HEIGHT / 2, 100, 50, Constant.RED, Constant.DARK_RED, "quit")
 
-        # Mise à jour de l'affichage
         pygame.display.update()
         # Affiche l'image
         pygame.display.flip()
 
+
+def game_playing():
     while game_playing:
-        # Boucle d'événement
+        # Boucle d'Ã©vÃ©nement
         for event in pygame.event.get():
-            # Si on détecte l'événement "quitter"
+            # Si on dÃ©tecte l'Ã©vÃ©nement "quitter"
             if event.type == pygame.QUIT:
-                # Décharge les modules de la mémoire
+                # DÃ©charge les modules de la mÃ©moire
                 Init.quit_game()
                 # Quitte le programme
                 sys.exit()
@@ -72,18 +62,17 @@ while game_is_open:
         Animation.update_player_title(Asset.player2, Asset.player2_title)
 
         # Efface l'image
-        screen.fill(Constant.BLACK)
-        # Affichage de l'image de jeu
-        screen.blit(Asset.background['surface'], Asset.background['rect'])
+        Worms.screen.fill(Constant.BLACK)
+        Worms.screen.blit(Asset.background['surface'], Asset.background['rect'])
         # Dessine le sol
-        pygame.draw.rect(screen, Constant.GROUND_COLOR, Constant.GROUND_POSITION)
+        pygame.draw.rect(Worms.screen, Constant.GROUND_COLOR, Constant.GROUND_POSITION)
 
-        # Affiche le joueur 1 sur l'écran
-        screen.blit(Asset.player1['surface'], Asset.player1['rect'])
-        screen.blit(Asset.player1_title['surface'], Asset.player1_title['rect'])
-        # Affiche le joueur 2 sur l'écran
-        screen.blit(Asset.player2['surface'], Asset.player2['rect'])
-        screen.blit(Asset.player2_title['surface'], Asset.player2_title['rect'])
+        # Affiche le joueur 1 sur l'Ã©cran
+        Worms.screen.blit(Asset.player1['surface'], Asset.player1['rect'])
+        Worms.screen.blit(Asset.player1_title['surface'], Asset.player1_title['rect'])
+        # Affiche le joueur 2 sur l'Ã©cran
+        Worms.screen.blit(Asset.player2['surface'], Asset.player2['rect'])
+        Worms.screen.blit(Asset.player2_title['surface'], Asset.player2_title['rect'])
 
         # Affiche l'image
         pygame.display.flip()
