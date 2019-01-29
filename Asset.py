@@ -12,6 +12,7 @@ player2_title = {'surface': None, 'rect': None}
 grenade = {'surface': None, 'rect': None}
 home_background = {'surface': None, 'rect': None}
 
+
 def init_background():
     background['surface'] = pygame.image.load("Assets/beach_background.gif")
     background['rect'] = background['surface'].get_rect()
@@ -33,8 +34,6 @@ def button(msg, x, y, w, h, ic, ac, action =  None):
     import sys
     import Worms
     import Init
-    global game_home
-    global game_playing
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 

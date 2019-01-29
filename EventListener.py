@@ -1,6 +1,39 @@
 # Auteur : Benoît
 
 
+def game_pause():
+    import pygame
+    import sys
+    import Worms
+    import Init
+    import Constant
+    import Asset
+    # Boucle d'événement
+    for event in pygame.event.get():
+        # Si on détecte l'événement "quitter"
+        if event.type == pygame.QUIT:
+            # Décharge les modules de la mémoire
+            Init.quit_game()
+            # Quitte le programme
+            sys.exit()
+
+    # screen.fill(Constant.WHITE)
+
+    # Affichage de l'image de l'accueil
+    Worms.screen.blit(Asset.home_background['surface'], Asset.home_background['rect'])
+
+    # Affichage des bouttons
+    Asset.button("Play", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN,
+                 Constant.DARK_GREEN, "play")
+    Asset.button("Quit", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 50, 100, 50, Constant.RED,
+                 Constant.DARK_RED, "quit")
+
+    # Mise à jour de l'affichage
+    pygame.display.update()
+    # Affiche l'image
+    pygame.display.flip()
+
+
 def game_home():
     import pygame
     import sys
@@ -50,6 +83,10 @@ def game_playing():
             sys.exit()
 
         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                Worms.game_pause = True
+                Worms.game_playing = False
+
             if event.key == pygame.K_LEFT:
                 Asset.player2 = Animation.player_move_left(Asset.player2)
 
