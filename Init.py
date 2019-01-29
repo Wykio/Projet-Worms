@@ -3,6 +3,7 @@ import pygame
 
 import Asset
 import Constant
+import testHome
 
 
 #Auteur : Antoine
@@ -12,6 +13,7 @@ def init_scren_info():
     info_screen = pygame.display.Info()
 
 def init_game():
+    testHome.initialize()
     # Initialise le module display de Pygame
     pygame.display.init()
     # Initialise le module font de Pygame

@@ -7,6 +7,7 @@ import Asset
 import Constant
 import Init
 import Home
+import testHome
 
 #Auteur: Antoine
 
@@ -65,7 +66,3 @@ while 1:
 
     # Affiche l'image
     pygame.display.flip()
-
-
-
-
