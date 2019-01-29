@@ -3,12 +3,17 @@ import pygame
 
 import Asset
 import Constant
+import testHome
 
 
 #Auteur : Antoine
 
-def init_game(width, height):
-    resolution = (width, height)
+def init_scren_info():
+    # Récupérer les informations de l'écran
+    info_screen = pygame.display.Info()
+
+def init_game():
+    testHome.initialize()
     # Initialise le module display de Pygame
     pygame.display.init()
     # Initialise le module font de Pygame
@@ -21,10 +26,13 @@ def init_game(width, height):
     # Application de l'icone de la fenêtre
     pygame.display.set_icon(icon)
 
+    # Récupérer les informations de l'écran
+    info_screen = pygame.display.Info()
+
     # Application du nom de la fenêtre
     pygame.display.set_caption("Worms by Attika, Benoit and Antoine")
     # Crée une fenêtre avec la résolution et le double buffer (voir les autres flags) enlever le resizable à la fin
-    screen = pygame.display.set_mode(resolution, pygame.DOUBLEBUF | pygame.RESIZABLE)
+    screen = pygame.display.set_mode((info_screen.current_w, info_screen.current_h), pygame.HWSURFACE | pygame.DOUBLEBUF)
     # Initialise le temps d'acquisition quand une touche du clavier reste enfoncé
     pygame.key.set_repeat(30, 30)
 

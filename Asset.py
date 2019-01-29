@@ -9,7 +9,7 @@ player1_title = {'surface': None, 'rect': None}
 player2 = {'surface': None, 'rect': None, 'looking_left': True}
 player2_title = {'surface': None, 'rect': None}
 grenade = {'surface': None, 'rect': None}
-
+home_background = {'surface': None, 'rect': None}
 
 def init_background():
     background['surface'] = pygame.image.load("Assets/beach_background.gif")
