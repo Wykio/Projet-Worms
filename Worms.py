@@ -2,43 +2,19 @@
 # Auteur: Antoine
 
 import pygame
-import sys
+
 import Animation
 import Asset
 import Constant
-import Init
+import Init, Event_Listener
 
 # Initialisation de la fenêtre du jeu
-screen = Init.init_game()
-# Récupérer les informations de l'écran
-info_screen = pygame.display.Info()
-
+screen = Init.init_game(Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT)
 # Chargement des assets
 Init.load_game()
 
-
 while 1:
-    # Boucle d'événement
-    for event in pygame.event.get():
-        # Si on détecte l'événement "quitter"
-        if event.type == pygame.QUIT:
-            # Décharge les modules de la mémoire
-            Init.quit_game()
-            # Quitte le programme
-            sys.exit()
-
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                Asset.player2 = Animation.player_move_left(Asset.player2)
-
-            if event.key == pygame.K_RIGHT:
-                Asset.player2 = Animation.player_move_right(Asset.player2)
-
-            if event.key == pygame.K_a:
-                Asset.player1 = Animation.player_move_left(Asset.player1)
-
-            if event.key == pygame.K_d:
-                Asset.player1 = Animation.player_move_right(Asset.player1)
+    Event_Listener.event_listener()
 
     Animation.update_player_title(Asset.player1, Asset.player1_title)
     Animation.update_player_title(Asset.player2, Asset.player2_title)
@@ -55,6 +31,11 @@ while 1:
     screen.blit(Asset.player2['surface'], Asset.player2['rect'])
     screen.blit(Asset.player2_title['surface'], Asset.player2_title['rect'])
 
+    Animation.update_player_weapon(screen, Asset.player1)
+
     # Affiche l'image
     pygame.display.flip()
+
+
+
 

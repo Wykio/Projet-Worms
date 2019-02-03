@@ -6,12 +6,11 @@ import Constant
 
 background = {'surface': None, 'rect': None}
 playerSpriteSheet = {'surface': None, 'rect': None}
-player1 = {'surface': None, 'rect': None, 'looking_left': True}
+player1 = {'surface': None, 'rect': None, 'looking_left': True, 'hold_grenade': False, 'Throw_grenade': True}
 player1_title = {'surface': None, 'rect': None}
 player2 = {'surface': None, 'rect': None, 'looking_left': True}
 player2_title = {'surface': None, 'rect': None}
 grenade = {'surface': None, 'rect': None}
-home_background = {'surface': None, 'rect': None}
 
 
 def init_background():
@@ -59,4 +58,7 @@ def init_player2_title():
 
 
 def init_grenade():
-    grenade['surface'] = playerSpriteSheet['surface'].subsurface(Constant.PLAYER_BODY_RECT)
+    grenade['surface'] = playerSpriteSheet['surface'].subsurface(Constant.GRENADE_RECT)
+    grenade['rect'] = grenade['surface'].get_rect()
+
+
