@@ -29,7 +29,7 @@ def init_pause_background():
     pause_background['rect'] = pause_background['surface'].get_rect()
 
 
-# Dessiner les boutons et le texte
+# Affichage du texte
 def text_objects(text, font):
     textSurface = font.render(text, True, Constant.BLACK)
     return textSurface, textSurface.get_rect()
@@ -48,24 +48,23 @@ def button(msg, x, y, w, h, ic, ac, action =  None):
 
         if click[0] == 1 and action != None:
             if action == "settings":
-                Worms.game_home = False
-                Worms.game_settings = True
+                Worms.game_home_screen = False
+                Worms.game_settings_screen = True
             elif action == "play":
-                Worms.game_settings = False
-                Worms.game_playing = True
+                Worms.game_settings_screen = False
+                Worms.game_playing_screen = True
+            elif action == "return":
+                Worms.game_pause_screen = False
+            elif action == "home":
+                Worms.game_playing_screen = False
+                Worms.game_pause_screen = False
+                Worms.game_settings_screen = False
+                Worms.game_home_screen = True
             elif action == "quit":
-                Worms.game_home = False
                 # Décharge les modules de la mémoire
                 Init.quit_game()
                 # Quitte le programme
                 sys.exit()
-            elif action == "return":
-                Worms.game_pause = False
-            elif action == "home":
-                Worms.game_playing = False
-                Worms.game_pause = False
-                Worms.game_settings = False
-                Worms.game_home = True
     else:
         pygame.draw.rect(Worms.screen, ic, (x, y, w, h))
 
@@ -112,6 +111,7 @@ def init_player2_title():
     font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
     player2_title['surface'] = font.render('Player 2', False, Constant.BLUE)
     player2_title['rect'] = player2_title['surface'].get_rect()
+
 
 def init_grenade():
     grenade['surface'] = playerSpriteSheet['surface'].subsurface(Constant.PLAYER_BODY_RECT)

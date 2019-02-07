@@ -1,7 +1,7 @@
 # Auteur : Benoît
 
 
-def game_pause():
+def pause_screen():
     import pygame
     import sys
     import Worms
@@ -33,7 +33,7 @@ def game_pause():
     pygame.display.flip()
 
 
-def game_settings():
+def settings_screen():
     import pygame
     import sys
     import Worms
@@ -55,8 +55,8 @@ def game_settings():
     Worms.screen.blit(Asset.pause_background['surface'], Asset.pause_background['rect'])
 
     # Affichage des bouttons
-    Asset.button("Play", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN, Constant.DARK_GREEN, "play")
-    Asset.button("Home", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 50, 100, 50, Constant.BLUE, Constant.DARK_BLUE, "home")
+    Asset.button("Start", Constant.SCREEN_WIDTH - 150, Constant.SCREEN_HEIGHT / 2 + 150, 100, 50, Constant.GREEN, Constant.DARK_GREEN, "play")
+    Asset.button("Home", Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT / 2 + 150, 100, 50, Constant.BLUE, Constant.DARK_BLUE, "home")
 
     # Mise à jour de l'affichage
     pygame.display.update()
@@ -64,7 +64,7 @@ def game_settings():
     pygame.display.flip()
 
 
-def game_home():
+def home_screen():
     import pygame
     import sys
     import Worms
@@ -95,7 +95,7 @@ def game_home():
     pygame.display.flip()
 
 
-def game_playing():
+def playing_screen():
     import pygame
     import sys
     import Worms
@@ -113,8 +113,9 @@ def game_playing():
             sys.exit()
 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                Worms.game_pause = True
+            if event.key == pygame.K_ESCAPE:
+                if not Worms.game_pause_screen:
+                    Worms.game_pause_screen = True
 
             if event.key == pygame.K_LEFT:
                 Asset.player2 = Animation.player_move_left(Asset.player2)
@@ -128,8 +129,8 @@ def game_playing():
             if event.key == pygame.K_d:
                 Asset.player1 = Animation.player_move_right(Asset.player1)
 
-    while Worms.game_pause:
-        game_pause()
+    while Worms.game_pause_screen:
+        pause_screen()
 
     Animation.update_player_title(Asset.player1, Asset.player1_title)
     Animation.update_player_title(Asset.player2, Asset.player2_title)
@@ -150,3 +151,4 @@ def game_playing():
 
     # Affiche l'image
     pygame.display.flip()
+

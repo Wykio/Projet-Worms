@@ -16,17 +16,18 @@ Init.load_game()
 
 # Statut du jeu
 game_is_open = True
-game_home = True
-game_settings = False
-game_playing = False
-game_pause = False
+game_home_screen = True
+game_settings_screen = False
+game_playing_screen = False
+game_pause_screen = False
 
 while game_is_open:
-    while game_home:
-        EventListener.game_home()
+    while game_home_screen:
+        EventListener.home_screen()
 
-    while game_settings:
-        EventListener.game_settings()
+    while game_settings_screen:
+        EventListener.settings_screen()
 
-    while game_playing:
-        EventListener.game_playing()
+    while game_playing_screen:
+        EventListener.playing_screen()
+
