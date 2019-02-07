@@ -103,8 +103,21 @@ def playing_screen():
     import Constant
     import Asset
     import Animation
+
     # Boucle d'événement
     for event in pygame.event.get():
+        # Contrôle du timer
+        if event.type == pygame.USEREVENT:
+            if Worms.counter <= 0:
+                Worms.counter = 6
+                if Worms.player1_turn:
+                    Worms.player1_turn = False
+                    Worms.player2_turn = True
+                elif Worms.player2_turn:
+                    Worms.player1_turn = True
+                    Worms.player2_turn = False
+            Worms.counter -= 1
+
         # Si on détecte l'événement "quitter"
         if event.type == pygame.QUIT:
             # Décharge les modules de la mémoire
@@ -149,6 +162,18 @@ def playing_screen():
     Worms.screen.blit(Asset.player2['surface'], Asset.player2['rect'])
     Worms.screen.blit(Asset.player2_title['surface'], Asset.player2_title['rect'])
 
+    # Affiche le timer
+    Asset.button(str(Worms.counter), Constant.SCREEN_WIDTH / 2 - 10, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.BLUE, Constant.GREEN)
+    # Si joueur 1
+    if Worms.player1_turn:
+        Worms.screen.blit(Worms.font.render("Joueur 1", True, (0, 0, 0)), (Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT - 70))
+    # Si joueur 2
+    elif Worms.player2_turn:
+        Worms.screen.blit(Worms.font.render("Joueur 2", True, (0, 0, 0)), (Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT - 70))
+
     # Affiche l'image
     pygame.display.flip()
+
+    # Clock tick
+    Worms.clock.tick(60)
 
