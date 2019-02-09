@@ -26,18 +26,10 @@ def init_game(width, height):
     screen = pygame.display.set_mode(resolution, pygame.DOUBLEBUF | pygame.RESIZABLE)
     # Initialise le temps d'acquisition quand une touche du clavier reste enfoncé
     pygame.key.set_repeat(30, 30)
+    # Enleve la souris
+    # pygame.mouse.set_visible(0)
 
     return screen
-
-
-def load_game():
-    Asset.init_background()
-    Asset.init_playerSpriteSheet()
-    Asset.init_player1()
-    Asset.init_player1_title()
-    Asset.init_player2()
-    Asset.init_player2_title()
-    Asset.init_grenade()
 
 
 def quit_game():
