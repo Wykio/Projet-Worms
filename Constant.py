@@ -28,6 +28,7 @@ DARK_BLUE = 0, 0, 200
 DARK = 27, 28, 35
 LIGHT_DARK = 94, 97, 112
 LIGHT_GREEN = 43, 187, 173
+INDIGO = 81, 45, 168
 
 # Position de départ joueurs
 PLAYER1_START_X = 200

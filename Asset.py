@@ -36,7 +36,7 @@ def text_objects(text, font):
 
 
 # Dessiner les boutons et le texte
-def button(msg, x, y, w, h, ic, ac, action = None):
+def button(msg, x, y, w, h, ic, ac, action=None):
     import sys
     import Worms
     import Init
@@ -47,7 +47,7 @@ def button(msg, x, y, w, h, ic, ac, action = None):
     if x + w > mouse[0] > x and y + h > mouse[1] > y:
         pygame.draw.rect(Worms.screen, ac, (x, y, w, h))
 
-        if click[0] == 1 and action != None:
+        if click[0] == 1 and action is not None:
             if action == "settings":
                 Worms.game_home_screen = False
                 Worms.game_settings_screen = True
@@ -66,6 +66,14 @@ def button(msg, x, y, w, h, ic, ac, action = None):
                 Init.quit_game()
                 # Quitte le programme
                 sys.exit()
+            elif action == "2 players":
+                Worms.player = 2
+            elif action == "3 players":
+                Worms.player = 3
+            elif action == "1 character":
+                Worms.character = 1
+            elif action == "2 characters":
+                Worms.character = 2
     else:
         pygame.draw.rect(Worms.screen, ic, (x, y, w, h))
 

@@ -60,6 +60,25 @@ def settings_screen():
     Asset.button("Start", Constant.SCREEN_WIDTH - 165, Constant.SCREEN_HEIGHT / 2 + 175, 150, 50, Constant.DARK, Constant.LIGHT_GREEN, "play")
     Asset.button("Home", Constant.SCREEN_WIDTH - 625, Constant.SCREEN_HEIGHT / 2 + 175, 150, 50, Constant.LIGHT_DARK, Constant.LIGHT_GREEN, "home")
 
+    textFont = pygame.font.SysFont("comicsansms", 20)
+    # Sélection nombre de joueurs
+    Worms.screen.blit(textFont.render("Nombre de joueurs", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 450))
+    if Worms.player == 2:
+        Asset.button("2", Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "2 players")
+        Asset.button("3", Constant.SCREEN_WIDTH - 550, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "3 players")
+    elif Worms.player == 3:
+        Asset.button("2", Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "2 players")
+        Asset.button("3", Constant.SCREEN_WIDTH - 550, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "3 players")
+
+    # Sélection nombre de personnages par joueur
+    Worms.screen.blit(textFont.render("Nombre de personnages", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 260, Constant.SCREEN_HEIGHT - 450))
+    if Worms.character == 1:
+        Asset.button("1", Constant.SCREEN_WIDTH - 260, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "1 character")
+        Asset.button("2", Constant.SCREEN_WIDTH - 200, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "2 characters")
+    elif Worms.character == 2:
+        Asset.button("1", Constant.SCREEN_WIDTH - 260, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "1 character")
+        Asset.button("2", Constant.SCREEN_WIDTH - 200, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "2 characters")
+
     # Mise à jour de l'affichage
     pygame.display.update()
     # Affiche l'image
