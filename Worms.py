@@ -28,10 +28,12 @@ while game_is_open:
     while game_settings_screen:
         EventListener.settings_screen()
 
+    # Initialisation de donnée lié à la partie
     clock = pygame.time.Clock()
     counter = 5
     pygame.time.set_timer(pygame.USEREVENT, 1000)
     font = pygame.font.SysFont('Consolas', 30)
+    turn = 0
     player1_turn = True
     player2_turn = False
     while game_playing_screen:

@@ -8,6 +8,7 @@ def pause_screen():
     import Init
     import Constant
     import Asset
+
     # Boucle d'événement
     for event in pygame.event.get():
         # Si on détecte l'événement "quitter"
@@ -23,9 +24,9 @@ def pause_screen():
     Worms.screen.blit(Asset.pause_background['surface'], Asset.pause_background['rect'])
 
     # Affichage des bouttons
-    Asset.button("Return", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN, Constant.DARK_GREEN, "return")
-    Asset.button("Home", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 25, 100, 50, Constant.BLUE, Constant.DARK_BLUE, "home")
-    Asset.button("Quit", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 50, 100, 50, Constant.RED, Constant.DARK_RED, "quit")
+    Asset.button("Return", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 - 100, 150, 50, Constant.DARK, Constant.LIGHT_GREEN, "return")
+    Asset.button("Home", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 - 25, 150, 50, Constant.LIGHT_DARK, Constant.LIGHT_GREEN, "home")
+    Asset.button("Quit", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 + 50, 150, 50, Constant.DARK_RED, Constant.LIGHT_GREEN, "quit")
 
     # Mise à jour de l'affichage
     pygame.display.update()
@@ -40,6 +41,7 @@ def settings_screen():
     import Init
     import Constant
     import Asset
+
     # Boucle d'événement
     for event in pygame.event.get():
         # Si on détecte l'événement "quitter"
@@ -55,8 +57,8 @@ def settings_screen():
     Worms.screen.blit(Asset.pause_background['surface'], Asset.pause_background['rect'])
 
     # Affichage des bouttons
-    Asset.button("Start", Constant.SCREEN_WIDTH - 150, Constant.SCREEN_HEIGHT / 2 + 150, 100, 50, Constant.GREEN, Constant.DARK_GREEN, "play")
-    Asset.button("Home", Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT / 2 + 150, 100, 50, Constant.BLUE, Constant.DARK_BLUE, "home")
+    Asset.button("Start", Constant.SCREEN_WIDTH - 165, Constant.SCREEN_HEIGHT / 2 + 175, 150, 50, Constant.DARK, Constant.LIGHT_GREEN, "play")
+    Asset.button("Home", Constant.SCREEN_WIDTH - 625, Constant.SCREEN_HEIGHT / 2 + 175, 150, 50, Constant.LIGHT_DARK, Constant.LIGHT_GREEN, "home")
 
     # Mise à jour de l'affichage
     pygame.display.update()
@@ -71,6 +73,7 @@ def home_screen():
     import Init
     import Constant
     import Asset
+
     # Boucle d'événement
     for event in pygame.event.get():
         # Si on détecte l'événement "quitter"
@@ -86,8 +89,8 @@ def home_screen():
     Worms.screen.blit(Asset.home_background['surface'], Asset.home_background['rect'])
 
     # Affichage des bouttons
-    Asset.button("Play", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 - 100, 100, 50, Constant.GREEN, Constant.DARK_GREEN, "settings")
-    Asset.button("Quit", Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT / 2 + 50, 100, 50, Constant.RED, Constant.DARK_RED, "quit")
+    Asset.button("Play", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 - 100, 150, 50, Constant.DARK, Constant.LIGHT_GREEN, "settings")
+    Asset.button("Quit", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 + 50, 150, 50, Constant.DARK_RED, Constant.LIGHT_GREEN, "quit")
 
     # Mise à jour de l'affichage
     pygame.display.update()
@@ -110,6 +113,7 @@ def playing_screen():
         if event.type == pygame.USEREVENT:
             if Worms.counter <= 0:
                 Worms.counter = 6
+                Worms.turn += 1
                 if Worms.player1_turn:
                     Worms.player1_turn = False
                     Worms.player2_turn = True
@@ -130,17 +134,19 @@ def playing_screen():
                 if not Worms.game_pause_screen:
                     Worms.game_pause_screen = True
 
-            if event.key == pygame.K_LEFT:
-                Asset.player2 = Animation.player_move_left(Asset.player2)
+            # A qui de jouer ?
+            if Worms.player1_turn:
+                if event.key == pygame.K_a:
+                    Asset.player1 = Animation.player_move_left(Asset.player1)
 
-            if event.key == pygame.K_RIGHT:
-                Asset.player2 = Animation.player_move_right(Asset.player2)
+                if event.key == pygame.K_d:
+                    Asset.player1 = Animation.player_move_right(Asset.player1)
+            elif Worms.player2_turn:
+                if event.key == pygame.K_LEFT:
+                    Asset.player2 = Animation.player_move_left(Asset.player2)
 
-            if event.key == pygame.K_a:
-                Asset.player1 = Animation.player_move_left(Asset.player1)
-
-            if event.key == pygame.K_d:
-                Asset.player1 = Animation.player_move_right(Asset.player1)
+                if event.key == pygame.K_RIGHT:
+                    Asset.player2 = Animation.player_move_right(Asset.player2)
 
     while Worms.game_pause_screen:
         pause_screen()
@@ -162,14 +168,19 @@ def playing_screen():
     Worms.screen.blit(Asset.player2['surface'], Asset.player2['rect'])
     Worms.screen.blit(Asset.player2_title['surface'], Asset.player2_title['rect'])
 
+    # Affiche le tour
+    Worms.screen.blit(Worms.font.render(str(Worms.turn), True, Constant.WHITE), (Constant.SCREEN_WIDTH - 630, Constant.SCREEN_HEIGHT - 475))
+    if Worms.counter <= 0:
+        Worms.screen.blit(Worms.font.render("Tour suivant", True, Constant.WHITE), (Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT - 450))
+
     # Affiche le timer
-    Asset.button(str(Worms.counter), Constant.SCREEN_WIDTH / 2 - 10, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.BLUE, Constant.GREEN)
+    Asset.button(str(Worms.counter), Constant.SCREEN_WIDTH - 635, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.LIGHT_DARK, Constant.DARK)
     # Si joueur 1
     if Worms.player1_turn:
-        Worms.screen.blit(Worms.font.render("Joueur 1", True, (0, 0, 0)), (Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT - 70))
+        Worms.screen.blit(Worms.font.render("Joueur 1", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
     # Si joueur 2
     elif Worms.player2_turn:
-        Worms.screen.blit(Worms.font.render("Joueur 2", True, (0, 0, 0)), (Constant.SCREEN_WIDTH / 2 - 50, Constant.SCREEN_HEIGHT - 70))
+        Worms.screen.blit(Worms.font.render("Joueur 2", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
 
     # Affiche l'image
     pygame.display.flip()

@@ -31,15 +31,16 @@ def init_pause_background():
 
 # Affichage du texte
 def text_objects(text, font):
-    textSurface = font.render(text, True, Constant.BLACK)
+    textSurface = font.render(text, True, Constant.WHITE)
     return textSurface, textSurface.get_rect()
 
 
 # Dessiner les boutons et le texte
-def button(msg, x, y, w, h, ic, ac, action =  None):
+def button(msg, x, y, w, h, ic, ac, action = None):
     import sys
     import Worms
     import Init
+
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -68,9 +69,9 @@ def button(msg, x, y, w, h, ic, ac, action =  None):
     else:
         pygame.draw.rect(Worms.screen, ic, (x, y, w, h))
 
-    smallText = pygame.font.Font("freesansbold.ttf", 20)
+    smallText = pygame.font.SysFont("comicsansms", 20)
     textSurf, textRect = text_objects(msg, smallText)
-    textRect.center = ((x + (w / 2)), (y + (h / 2)) )
+    textRect.center = ((x + (w / 2)), (y + (h / 2)))
     Worms.screen.blit(textSurf, textRect)
 
 
