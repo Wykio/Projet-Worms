@@ -1,5 +1,7 @@
 # -*-coding:Latin-1 -*
 
+import random
+
 # Format d'écran de type VGA
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
@@ -30,7 +32,13 @@ LIGHT_DARK = 94, 97, 112
 LIGHT_GREEN = 43, 187, 173
 INDIGO = 81, 45, 168
 
-# Position de départ joueurs
-PLAYER1_START_X = 200
-PLAYER2_START_X = 400
+# Position de départ des personnages des joueurs
+player_location = random.randint(40, 600)
+PLAYER1_START_X = player_location
+
+player_location = random.randint(40, 600)
+PLAYER2_START_X = player_location
+
+player_location = random.randint(40, 600)
+PLAYER3_START_X = player_location
 

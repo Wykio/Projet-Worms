@@ -40,6 +40,8 @@ def load_game():
     Asset.init_player1_title()
     Asset.init_player2()
     Asset.init_player2_title()
+    Asset.init_player3()
+    Asset.init_player3_title()
 
 def quit_game():
     # Décharge de la mémoire le module display de Pygame

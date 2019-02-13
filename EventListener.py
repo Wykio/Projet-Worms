@@ -133,12 +133,26 @@ def playing_screen():
             if Worms.counter <= 0:
                 Worms.counter = 6
                 Worms.turn += 1
-                if Worms.player1_turn:
-                    Worms.player1_turn = False
-                    Worms.player2_turn = True
-                elif Worms.player2_turn:
-                    Worms.player1_turn = True
-                    Worms.player2_turn = False
+                if Worms.player == 2:
+                    if Worms.player1_turn:
+                        Worms.player1_turn = False
+                        Worms.player2_turn = True
+                    elif Worms.player2_turn:
+                        Worms.player1_turn = True
+                        Worms.player2_turn = False
+                elif Worms.player == 3:
+                    if Worms.player1_turn:
+                        Worms.player1_turn = False
+                        Worms.player2_turn = True
+                        Worms.player3_turn = False
+                    elif Worms.player2_turn:
+                        Worms.player1_turn = False
+                        Worms.player2_turn = False
+                        Worms.player3_turn = True
+                    elif Worms.player3_turn:
+                        Worms.player1_turn = True
+                        Worms.player2_turn = False
+                        Worms.player3_turn = False
             Worms.counter -= 1
 
         # Si on détecte l'événement "quitter"
@@ -166,12 +180,20 @@ def playing_screen():
 
                 if event.key == pygame.K_RIGHT:
                     Asset.player2 = Animation.player_move_right(Asset.player2)
+            elif Worms.player3_turn:
+                if event.key == pygame.K_j:
+                    Asset.player3 = Animation.player_move_left(Asset.player3)
+
+                if event.key == pygame.K_l:
+                    Asset.player3 = Animation.player_move_right(Asset.player3)
 
     while Worms.game_pause_screen:
         pause_screen()
 
     Animation.update_player_title(Asset.player1, Asset.player1_title)
     Animation.update_player_title(Asset.player2, Asset.player2_title)
+    if Worms.player == 3:
+        Animation.update_player_title(Asset.player3, Asset.player3_title)
 
     # Efface l'image
     Worms.screen.fill(Constant.BLACK)
@@ -186,6 +208,10 @@ def playing_screen():
     # Affiche le joueur 2 sur l'écran
     Worms.screen.blit(Asset.player2['surface'], Asset.player2['rect'])
     Worms.screen.blit(Asset.player2_title['surface'], Asset.player2_title['rect'])
+    if Worms.player == 3:
+        # Affiche le joueur 3 sur l'écran
+        Worms.screen.blit(Asset.player3['surface'], Asset.player3['rect'])
+        Worms.screen.blit(Asset.player3_title['surface'], Asset.player3_title['rect'])
 
     # Affiche le tour
     Worms.screen.blit(Worms.comicSansMsFont.render(str(Worms.turn), True, Constant.WHITE), (Constant.SCREEN_WIDTH - 630, Constant.SCREEN_HEIGHT - 475))
@@ -200,6 +226,9 @@ def playing_screen():
     # Si joueur 2
     elif Worms.player2_turn:
         Worms.screen.blit(Worms.comicSansMsFont.render("Joueur 2", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
+    # Si joueur 3
+    elif Worms.player3_turn:
+        Worms.screen.blit(Worms.comicSansMsFont.render("Joueur 3", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
 
     # Affiche l'image
     pygame.display.flip()

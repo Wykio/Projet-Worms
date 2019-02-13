@@ -9,6 +9,8 @@ player1 = {'surface': None, 'rect': None, 'looking_left': True}
 player1_title = {'surface': None, 'rect': None}
 player2 = {'surface': None, 'rect': None, 'looking_left': True}
 player2_title = {'surface': None, 'rect': None}
+player3 = {'surface': None, 'rect': None, 'looking_left': True}
+player3_title = {'surface': None, 'rect': None}
 grenade = {'surface': None, 'rect': None}
 home_background = {'surface': None, 'rect': None}
 pause_background = {'surface': None, 'rect': None}
@@ -122,5 +124,21 @@ def init_player2_title():
     player2_title['rect'] = player2_title['surface'].get_rect()
 
 
+def init_player3():
+    player3['surface'] = playerSpriteSheet['surface'].subsurface(Constant.PLAYER_BODY_RECT)
+    player3['rect'] = player3['surface'].get_rect()
+    # x = moitier de l'écran
+    player3['rect'][0] = Constant.PLAYER3_START_X
+    # y = y de la position du sol - taille du sprite
+    player3['rect'][1] = Constant.GROUND_POSITION[1] - 35
+
+
+def init_player3_title():
+    font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
+    player3_title['surface'] = font.render('Player 3', False, Constant.GREEN)
+    player3_title['rect'] = player3_title['surface'].get_rect()
+
+
 def init_grenade():
     grenade['surface'] = playerSpriteSheet['surface'].subsurface(Constant.PLAYER_BODY_RECT)
+
