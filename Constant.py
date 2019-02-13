@@ -1,6 +1,6 @@
 # -*-coding:Latin-1 -*
 
-# format d'écran de type VGA
+# Format d'écran de type VGA
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 

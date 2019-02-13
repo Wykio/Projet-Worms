@@ -23,6 +23,7 @@ def pause_screen():
     # Affichage de l'image de pause
     Worms.screen.blit(Asset.pause_background['surface'], Asset.pause_background['rect'])
 
+    Worms.screen.blit(Worms.comicSansMsFont.render("Pause", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 350, Constant.SCREEN_HEIGHT - 400))
     # Affichage des bouttons
     Asset.button("Return", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 - 100, 150, 50, Constant.DARK, Constant.LIGHT_GREEN, "return")
     Asset.button("Home", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 - 25, 150, 50, Constant.LIGHT_DARK, Constant.LIGHT_GREEN, "home")
@@ -60,9 +61,8 @@ def settings_screen():
     Asset.button("Start", Constant.SCREEN_WIDTH - 165, Constant.SCREEN_HEIGHT / 2 + 175, 150, 50, Constant.DARK, Constant.LIGHT_GREEN, "play")
     Asset.button("Home", Constant.SCREEN_WIDTH - 625, Constant.SCREEN_HEIGHT / 2 + 175, 150, 50, Constant.LIGHT_DARK, Constant.LIGHT_GREEN, "home")
 
-    textFont = pygame.font.SysFont("comicsansms", 20)
     # Sélection nombre de joueurs
-    Worms.screen.blit(textFont.render("Nombre de joueurs", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 450))
+    Worms.screen.blit(Worms.comicSansMsFont.render("Nombre de joueurs", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 450))
     if Worms.player == 2:
         Asset.button("2", Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "2 players")
         Asset.button("3", Constant.SCREEN_WIDTH - 550, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "3 players")
@@ -71,7 +71,7 @@ def settings_screen():
         Asset.button("3", Constant.SCREEN_WIDTH - 550, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "3 players")
 
     # Sélection nombre de personnages par joueur
-    Worms.screen.blit(textFont.render("Nombre de personnages", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 260, Constant.SCREEN_HEIGHT - 450))
+    Worms.screen.blit(Worms.comicSansMsFont.render("Nombre de personnages", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 260, Constant.SCREEN_HEIGHT - 450))
     if Worms.character == 1:
         Asset.button("1", Constant.SCREEN_WIDTH - 260, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "1 character")
         Asset.button("2", Constant.SCREEN_WIDTH - 200, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "2 characters")
@@ -188,18 +188,18 @@ def playing_screen():
     Worms.screen.blit(Asset.player2_title['surface'], Asset.player2_title['rect'])
 
     # Affiche le tour
-    Worms.screen.blit(Worms.font.render(str(Worms.turn), True, Constant.WHITE), (Constant.SCREEN_WIDTH - 630, Constant.SCREEN_HEIGHT - 475))
+    Worms.screen.blit(Worms.comicSansMsFont.render(str(Worms.turn), True, Constant.WHITE), (Constant.SCREEN_WIDTH - 630, Constant.SCREEN_HEIGHT - 475))
     if Worms.counter <= 0:
-        Worms.screen.blit(Worms.font.render("Tour suivant", True, Constant.WHITE), (Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT - 450))
+        Worms.screen.blit(Worms.comicSansMsFont.render("Tour suivant", True, Constant.WHITE), (Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT - 450))
 
     # Affiche le timer
     Asset.button(str(Worms.counter), Constant.SCREEN_WIDTH - 635, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.LIGHT_DARK, Constant.DARK)
     # Si joueur 1
     if Worms.player1_turn:
-        Worms.screen.blit(Worms.font.render("Joueur 1", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
+        Worms.screen.blit(Worms.comicSansMsFont.render("Joueur 1", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
     # Si joueur 2
     elif Worms.player2_turn:
-        Worms.screen.blit(Worms.font.render("Joueur 2", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
+        Worms.screen.blit(Worms.comicSansMsFont.render("Joueur 2", True, Constant.WHITE), (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
 
     # Affiche l'image
     pygame.display.flip()

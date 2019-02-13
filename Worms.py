@@ -14,6 +14,10 @@ screen = Init.init_game(Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT)
 # Chargement des assets
 Init.load_game()
 
+# Police d'écriture
+comicSansMsFont = pygame.font.SysFont("comicsansms", 20)
+consolasFont = pygame.font.SysFont('Consolas', 20)
+
 # Statut du jeu
 game_is_open = True
 game_home_screen = True
@@ -35,7 +39,6 @@ while game_is_open:
     clock = pygame.time.Clock()
     counter = 5
     pygame.time.set_timer(pygame.USEREVENT, 1000)
-    font = pygame.font.SysFont('Consolas', 30)
     turn = 1
     player1_turn = True
     player2_turn = False
