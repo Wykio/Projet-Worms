@@ -43,6 +43,9 @@ while game_is_open:
     player1_turn = True
     player2_turn = False
     player3_turn = False
+    player1_character = 1
+    player2_character = 1
+    player3_character = 1
     while game_playing_screen:
         EventListener.playing_screen()
 

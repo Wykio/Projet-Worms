@@ -36,12 +36,21 @@ def load_game():
     Asset.init_home_background()
     Asset.init_pause_background()
     Asset.init_playerSpriteSheet()
-    Asset.init_player1()
-    Asset.init_player1_title()
-    Asset.init_player2()
-    Asset.init_player2_title()
-    Asset.init_player3()
-    Asset.init_player3_title()
+
+    Asset.init_player1_character1()
+    Asset.init_player1_character1_title()
+    Asset.init_player1_character2()
+    Asset.init_player1_character2_title()
+
+    Asset.init_player2_character1()
+    Asset.init_player2_character1_title()
+    Asset.init_player2_character2()
+    Asset.init_player2_character2_title()
+
+    Asset.init_player3_character1()
+    Asset.init_player3_character1_title()
+    Asset.init_player3_character2()
+    Asset.init_player3_character2_title()
 
 def quit_game():
     # Décharge de la mémoire le module display de Pygame

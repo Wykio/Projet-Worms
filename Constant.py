@@ -34,11 +34,20 @@ INDIGO = 81, 45, 168
 
 # Position de départ des personnages des joueurs
 player_location = random.randint(40, 600)
-PLAYER1_START_X = player_location
+PLAYER1_CHARACTER1_START_X = player_location
 
 player_location = random.randint(40, 600)
-PLAYER2_START_X = player_location
+PLAYER1_CHARACTER2_START_X = player_location
 
 player_location = random.randint(40, 600)
-PLAYER3_START_X = player_location
+PLAYER2_CHARACTER1_START_X = player_location
+
+player_location = random.randint(40, 600)
+PLAYER2_CHARACTER2_START_X = player_location
+
+player_location = random.randint(40, 600)
+PLAYER3_CHARACTER1_START_X = player_location
+
+player_location = random.randint(40, 600)
+PLAYER3_CHARACTER2_START_X = player_location
 

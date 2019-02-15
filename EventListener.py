@@ -126,6 +126,9 @@ def playing_screen():
     import Asset
     import Animation
 
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+
     # Boucle d'événement
     for event in pygame.event.get():
         # Contrôle du timer
@@ -169,31 +172,52 @@ def playing_screen():
 
             # A qui de jouer ?
             if Worms.player1_turn:
-                if event.key == pygame.K_a:
-                    Asset.player1 = Animation.player_move_left(Asset.player1)
-
-                if event.key == pygame.K_d:
-                    Asset.player1 = Animation.player_move_right(Asset.player1)
+                if Worms.player1_character == 1:
+                    if event.key == pygame.K_a:
+                        Asset.player1 = Animation.player_move_left(Asset.player1Character1)
+                    if event.key == pygame.K_d:
+                        Asset.player1 = Animation.player_move_right(Asset.player1Character1)
+                elif Worms.player1_character == 2:
+                    if event.key == pygame.K_a:
+                        Asset.player1 = Animation.player_move_left(Asset.player1Character2)
+                    if event.key == pygame.K_d:
+                        Asset.player1 = Animation.player_move_right(Asset.player1Character2)
             elif Worms.player2_turn:
-                if event.key == pygame.K_LEFT:
-                    Asset.player2 = Animation.player_move_left(Asset.player2)
-
-                if event.key == pygame.K_RIGHT:
-                    Asset.player2 = Animation.player_move_right(Asset.player2)
+                if Worms.player2_character == 1:
+                    if event.key == pygame.K_LEFT:
+                        Asset.player2 = Animation.player_move_left(Asset.player2Character1)
+                    if event.key == pygame.K_RIGHT:
+                        Asset.player2 = Animation.player_move_right(Asset.player2Character1)
+                elif Worms.player2_character == 2:
+                    if event.key == pygame.K_LEFT:
+                        Asset.player2 = Animation.player_move_left(Asset.player2Character2)
+                    if event.key == pygame.K_RIGHT:
+                        Asset.player2 = Animation.player_move_right(Asset.player2Character2)
             elif Worms.player3_turn:
-                if event.key == pygame.K_j:
-                    Asset.player3 = Animation.player_move_left(Asset.player3)
-
-                if event.key == pygame.K_l:
-                    Asset.player3 = Animation.player_move_right(Asset.player3)
+                if Worms.player3_character == 1:
+                    if event.key == pygame.K_j:
+                        Asset.player3 = Animation.player_move_left(Asset.player3Character1)
+                    if event.key == pygame.K_l:
+                        Asset.player3 = Animation.player_move_right(Asset.player3Character1)
+                elif Worms.player3_character == 2:
+                    if event.key == pygame.K_j:
+                        Asset.player3 = Animation.player_move_left(Asset.player3Character2)
+                    if event.key == pygame.K_l:
+                        Asset.player3 = Animation.player_move_right(Asset.player3Character2)
 
     while Worms.game_pause_screen:
         pause_screen()
 
-    Animation.update_player_title(Asset.player1, Asset.player1_title)
-    Animation.update_player_title(Asset.player2, Asset.player2_title)
+    Animation.update_player_title(Asset.player1Character1, Asset.player1_character1_title)
+    Animation.update_player_title(Asset.player2Character1, Asset.player2_character1_title)
     if Worms.player == 3:
-        Animation.update_player_title(Asset.player3, Asset.player3_title)
+        Animation.update_player_title(Asset.player3Character1, Asset.player3_character1_title)
+
+    if Worms.character == 2:
+        Animation.update_player_title(Asset.player1Character2, Asset.player1_character2_title)
+        Animation.update_player_title(Asset.player2Character2, Asset.player2_character2_title)
+        if Worms.player == 3:
+            Animation.update_player_title(Asset.player3Character2, Asset.player3_character2_title)
 
     # Efface l'image
     Worms.screen.fill(Constant.BLACK)
@@ -202,16 +226,52 @@ def playing_screen():
     # Dessine le sol
     pygame.draw.rect(Worms.screen, Constant.GROUND_COLOR, Constant.GROUND_POSITION)
 
-    # Affiche le joueur 1 sur l'écran
-    Worms.screen.blit(Asset.player1['surface'], Asset.player1['rect'])
-    Worms.screen.blit(Asset.player1_title['surface'], Asset.player1_title['rect'])
-    # Affiche le joueur 2 sur l'écran
-    Worms.screen.blit(Asset.player2['surface'], Asset.player2['rect'])
-    Worms.screen.blit(Asset.player2_title['surface'], Asset.player2_title['rect'])
+    # Sélection du personnage du joueur
+    if Worms.character == 2:
+        if Worms.player1_turn:
+            if Worms.player1_character == 1:
+                Asset.button("P1", Constant.SCREEN_WIDTH - 100, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "joueur 1 personnage 1")
+                Asset.button("P2", Constant.SCREEN_WIDTH - 50, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "joueur 1 personnage 2")
+            elif Worms.player1_character == 2:
+                Asset.button("P1", Constant.SCREEN_WIDTH - 100, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "joueur 1 personnage 1")
+                Asset.button("P2", Constant.SCREEN_WIDTH - 50, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "joueur 1 personnage 2")
+        elif Worms.player2_turn:
+            if Worms.player2_character == 1:
+                Asset.button("P1", Constant.SCREEN_WIDTH - 100, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "joueur 2 personnage 1")
+                Asset.button("P2", Constant.SCREEN_WIDTH - 50, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "joueur 2 personnage 2")
+            elif Worms.player2_character == 2:
+                Asset.button("P1", Constant.SCREEN_WIDTH - 100, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "joueur 2 personnage 1")
+                Asset.button("P2", Constant.SCREEN_WIDTH - 50, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "joueur 2 personnage 2")
+        elif Worms.player3_turn:
+            if Worms.player3_character == 1:
+                Asset.button("P1", Constant.SCREEN_WIDTH - 100, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "joueur 3 personnage 1")
+                Asset.button("P2", Constant.SCREEN_WIDTH - 50, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "joueur 3 personnage 2")
+            elif Worms.player3_character == 2:
+                Asset.button("P1", Constant.SCREEN_WIDTH - 100, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.DARK, Constant.LIGHT_GREEN, "joueur 3 personnage 1")
+                Asset.button("P2", Constant.SCREEN_WIDTH - 50, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.INDIGO, Constant.LIGHT_GREEN, "joueur 3 personnage 2")
+
+    # Affiche le personnage 1 du joueur 1 sur l'écran
+    Worms.screen.blit(Asset.player1Character1['surface'], Asset.player1Character1['rect'])
+    Worms.screen.blit(Asset.player1_character1_title['surface'], Asset.player1_character1_title['rect'])
+    # Affiche le personnage 1 du joueur 2 sur l'écran
+    Worms.screen.blit(Asset.player2Character1['surface'], Asset.player2Character1['rect'])
+    Worms.screen.blit(Asset.player2_character1_title['surface'], Asset.player2_character1_title['rect'])
     if Worms.player == 3:
-        # Affiche le joueur 3 sur l'écran
-        Worms.screen.blit(Asset.player3['surface'], Asset.player3['rect'])
-        Worms.screen.blit(Asset.player3_title['surface'], Asset.player3_title['rect'])
+        # Affiche le personnage 1 du joueur 3 sur l'écran
+        Worms.screen.blit(Asset.player3Character1['surface'], Asset.player3Character1['rect'])
+        Worms.screen.blit(Asset.player3_character1_title['surface'], Asset.player3_character1_title['rect'])
+
+    if Worms.character == 2:
+        # Affiche le personnage 2 du joueur 1 sur l'écran
+        Worms.screen.blit(Asset.player1Character2['surface'], Asset.player1Character2['rect'])
+        Worms.screen.blit(Asset.player1_character2_title['surface'], Asset.player1_character2_title['rect'])
+        # Affiche le personnage 2 du joueur 2 sur l'écran
+        Worms.screen.blit(Asset.player2Character2['surface'], Asset.player2Character2['rect'])
+        Worms.screen.blit(Asset.player2_character2_title['surface'], Asset.player2_character2_title['rect'])
+        if Worms.player == 3:
+            # Affiche le personnage 2 du joueur 3 sur l'écran
+            Worms.screen.blit(Asset.player3Character2['surface'], Asset.player3Character2['rect'])
+            Worms.screen.blit(Asset.player3_character2_title['surface'], Asset.player3_character2_title['rect'])
 
     # Affiche le tour
     Worms.screen.blit(Worms.comicSansMsFont.render(str(Worms.turn), True, Constant.WHITE), (Constant.SCREEN_WIDTH - 630, Constant.SCREEN_HEIGHT - 475))
