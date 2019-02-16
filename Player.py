@@ -17,20 +17,20 @@ class Player(Asset, Textfield):
         self.title = Textfield(name, color)
         self.weapon_select = 0
         self.grenade = Weapon(sprite_sheet.surface.subsurface(Constant.GRENADE_RECT), sprite_sheet.surface.subsurface(Constant.GRENADE_RECT))
+        self.bazooka = Weapon(sprite_sheet.surface.subsurface(Constant.BAZOOKA_RECT), sprite_sheet.surface.subsurface(Constant.ROCKET_RECT))
         self.looking_left = True
         self.is_shooting = False
         self.animationState = 1;
+        self.life_point = 1;
 
     def __str__(self):
         return "{ Player: " + str(self.surface) + " | " + str(self.rect) + " ; Title: " + str(self.title) + " }"
 
-    def update(self, screen):
+    def update(self, screen, other, alpha, v0, gravity, wind_force):
         self.title.rect = self.rect.move(-self.title.rect[2] / 2, -self.title.rect[3])
         screen.blit(self.surface, self.rect)
         screen.blit(self.title.surface, self.title.rect)
-        self.update_weapon(screen)
-        if self.is_shooting:
-            self.update_shot(screen)
+        self.update_weapon(screen, other, alpha, v0, gravity, wind_force)
 
     def move_left(self):
         if self.looking_left:
@@ -72,28 +72,40 @@ class Player(Asset, Textfield):
     def select_weapon(self, screen):
         if self.weapon_select == 0:
             self.weapon_select = 1
+        elif self.weapon_select == 1:
+            self.weapon_select = 2
         else:
             self.weapon_select = 0
 
-    def update_weapon(self, screen):
+    def update_weapon(self, screen, other, alpha, v0, gravity, wind_force):
+        #Gestion de la grenade
         if self.weapon_select == 1:
             self.grenade.weapon_set_position(self.rect[0] + 7, self.rect[1] + 15)
-            screen.blit(self.grenade.weapon.surface, self.grenade.weapon.rect)
+            if self.looking_left:
+                screen.blit(pygame.transform.flip(self.grenade.weapon.surface, 1, 0), self.grenade.weapon.rect)
+            else:
+                screen.blit(self.grenade.weapon.surface, self.grenade.weapon.rect)
+            if self.grenade.is_shooting:
+                self.grenade.update(screen, other, self.looking_left, alpha, v0, gravity, wind_force)
+        #Gestion du Bazooka
+        if self.weapon_select == 2:
+            self.bazooka.weapon_set_position(self.rect[0] - 10, self.rect[1])
+            if self.looking_left:
+                screen.blit(self.bazooka.weapon.surface, self.bazooka.weapon.rect)
+            else:
+                screen.blit(pygame.transform.flip(self.bazooka.weapon.surface, 1, 0), self.bazooka.weapon.rect)
+            if self.bazooka.is_shooting:
+                self.bazooka.update(screen, other, self.looking_left, alpha, v0, gravity, wind_force)
 
     def shoot(self, screen):
         if self.weapon_select == 1:
-            print("shot")
-            self.is_shooting = True
-            self.grenade.shot_set_position(self.rect[0] + 7, self.rect[1] + 15)
-
-    def update_shot(self, screen):
-        if self.weapon_select == 1:
-            if self.is_shooting:
-                if self.looking_left:
-                    self.grenade.shot.move_left()
-                else:
-                    self.grenade.shot.move_right()
-                screen.blit(self.grenade.shot.surface, self.grenade.shot.rect)
-                if (self.grenade.shot.rect.right >= Constant.SCREEN_WIDTH) or (self.grenade.shot.rect.left <= 0):
-                    self.is_shooting = False
-                    print("stop")
+            self.grenade.is_shooting = True
+            self.grenade.time = 0.0
+            #self.grenade.shot_set_position(self.rect[0] + 7, self.rect[1] + 15)
+            self.grenade.x0 = self.rect[0] + 7
+            self.grenade.y0 = self.rect[1] + 15
+        if self.weapon_select == 2:
+            self.bazooka.is_shooting = True
+            self.bazooka.time = 0.0
+            self.bazooka.x0 = self.rect[0] - 10
+            self.bazooka.y0 = self.rect[1]

@@ -30,3 +30,6 @@ class Asset:
         if self.rect.right < Constant.SCREEN_WIDTH:
             self.rect = self.rect.move([1, 0])
 
+    def move(self, x, y):
+        if (self.rect.right < Constant.SCREEN_WIDTH) and (self.rect.left > 0):
+            self.rect = self.rect.move([x, y])
