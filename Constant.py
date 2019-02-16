@@ -1,9 +1,13 @@
 # -*-coding:Latin-1 -*
 # Auteur: Antoine
+# Modification : Attika et Benoît
 
 # format d'écran de type VGA
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
+
+#Définition des sprites du menu
+MAIN_MENU = 300
 
 # Définition du Sol
 GROUND_LEVEL = 300
@@ -28,8 +32,15 @@ WHITE = 255, 255, 255
 BLACK = 0, 0, 0
 GROUND_COLOR = 191, 128, 64
 GREEN = 0, 255, 0
+DARK_GREEN = 0, 200, 0
 RED = 255, 0, 0
+DARK_RED = 200, 0, 0
 BLUE = 0, 0, 255
+DARK_BLUE = 0, 0, 200
+DARK = 27, 28, 35
+LIGHT_DARK = 94, 97, 112
+LIGHT_GREEN = 43, 187, 173
+INDIGO = 81, 45, 168
 
 # Position de départ joueurs
 PLAYER1_START_X = 200
