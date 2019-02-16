@@ -3,18 +3,14 @@
 
 import pygame, sys
 
-from Asset import Asset
 from Textfield import Textfield
-from Player import Player
 import Constant
-import Init
 import Menu
 import EventListener
 
+Menu.init_game()
+
 def main():
-
-    Menu.init_game()
-
     while Menu.game_is_open:
         # Boucle d'événement
         while Menu.game_home_screen:

@@ -27,19 +27,20 @@ player1 = Player("Player 1", Constant.RED, gameSprite)
 player2 = Player("Player 2", Constant.BLUE, gameSprite)
 
 def init_game():
+    screen = Init.init_game(Constant.SCREEN_WIDTH, Constant.SCREEN_HEIGHT)
+    # x = moitié de l'écran, y de la position du sol - taille du sprite
+    player1.set_position(Constant.PLAYER1_START_X, Constant.GROUND_POSITION[1] - 35)
+    player2.set_position(Constant.PLAYER2_START_X, Constant.GROUND_POSITION[1] - 35)
+    load_game()
     game_is_open = True
     game_home_screen = False
     game_settings_screen = False
     game_playing_screen = True
     game_pause_screen = False
-    # x = moitié de l'écran, y de la position du sol - taille du sprite
-    player1.set_position(Constant.PLAYER1_START_X, Constant.GROUND_POSITION[1] - 35)
-    player2.set_position(Constant.PLAYER2_START_X, Constant.GROUND_POSITION[1] - 35)
-    load_game()
 
 def load_game():
-    init_home_background()
     init_background()
+    init_home_background()
     init_pause_background()
 
 def init_background():

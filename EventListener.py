@@ -6,9 +6,7 @@ import sys
 import Init
 import Worms
 import Menu
-import Asset
 import Constant
-
 
 def home_screen():
     # Boucle d'événement
@@ -28,7 +26,6 @@ def home_screen():
 
     pygame.display.update()
     pygame.display.flip()
-
 
 def settings_screen():
     for event in pygame.event.get():
