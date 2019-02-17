@@ -19,6 +19,9 @@ def pause_screen():
             sys.exit()
 
     Worms.screen.blit(Menu.pause_background['surface'], Menu.pause_background['rect'])
+    Worms.screen.blit(
+        pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Pause", True, Constant.WHITE),
+        (Constant.SCREEN_WIDTH - 350, Constant.SCREEN_HEIGHT - 400))
 
     Menu.button("Return", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 - 100, 150, 50, Constant.DARK,
                 Constant.LIGHT_GREEN, "return")
@@ -141,8 +144,7 @@ def playing_screen():
             keys = pygame.key.get_pressed()
             if keys[pygame.K_ESCAPE]:
                 if not Worms.game_pause_screen:
-                    print("escape pressed")
-                    Menu.game_pause_screen = True
+                    Worms.game_pause_screen = True
 
             # Gestion des données de calcul de trajectoire
             if keys[pygame.K_r]:
@@ -291,22 +293,22 @@ def playing_screen():
     Worms.hud.update(Worms.screen)
 
     # Update players
-    if Menu.player1character1.life_point:
+    if Menu.player1character1.life_point > 0:
         Menu.player1character1.update(Worms.screen, Menu.player1character1, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
-    if Menu.player1character2.life_point:
+    if Menu.player1character2.life_point > 0:
         Menu.player1character2.update(Worms.screen, Menu.player1character2, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
-    if Menu.player2character1.life_point:
+    if Menu.player2character1.life_point > 0:
         Menu.player2character1.update(Worms.screen, Menu.player2character1, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
-    if Menu.player2character2.life_point:
+    if Menu.player2character2.life_point > 0:
         Menu.player2character2.update(Worms.screen, Menu.player2character2, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
-    if Menu.player3character1.life_point:
+    if Menu.player3character1.life_point > 0:
         Menu.player3character1.update(Worms.screen, Menu.player3character1, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
-    if Menu.player3character2.life_point:
+    if Menu.player3character2.life_point > 0:
         Menu.player3character2.update(Worms.screen, Menu.player3character2, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
 

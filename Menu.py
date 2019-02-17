@@ -1,5 +1,6 @@
 import pygame
 import sys
+import random
 import Constant
 from Player import Player
 import Init
@@ -36,12 +37,10 @@ def load_game():
     init_pause_background()
 
 def init_characters():
-    player1character1.set_position(Constant.PLAYER1_START_X, Constant.GROUND_POSITION[1] - 35)
-    player1character2.set_position(Constant.PLAYER1_1_START_X, Constant.GROUND_POSITION[1] - 35)
-    player2character1.set_position(Constant.PLAYER2_START_X, Constant.GROUND_POSITION[1] - 35)
-    player2character2.set_position(Constant.PLAYER2_1_START_X, Constant.GROUND_POSITION[1] - 35)
-    player3character1.set_position(Constant.PLAYER3_START_X, Constant.GROUND_POSITION[1] - 35)
-    player3character2.set_position(Constant.PLAYER3_1_START_X, Constant.GROUND_POSITION[1] - 35)
+    for j in all_players:
+        pos = random.randint(40, 600)
+        j.set_position(pos, Constant.GROUND_POSITION[1] - 35)
+        j.life_point = 3
     erase_useless_players()
     pygame.display.update()
     pygame.display.flip()
@@ -68,6 +67,36 @@ def init_pause_background():
     pause_background['surface'] = pygame.image.load("Assets/pause_background.jpg")
     pause_background['rect'] = pause_background['surface'].get_rect()
 
+def reset_game():
+    import Worms
+    from Textfield import Textfield
+    init_characters()
+
+    Worms.game_is_open = True
+    Worms.game_home_screen = True
+    Worms.game_playing_screen = False
+    Worms.game_settings_screen = False
+    Worms.game_pause_screen = False
+
+    Worms.alpha = Constant.GRENADE_ALPHA_ANGLE
+    Worms.v0 = Constant.GRENADE_V0
+    Worms.gravity = Constant.GRAVITY
+    Worms.wind_force = 0
+    Worms.hud = Textfield(None, Constant.BLACK)
+
+    Worms.player = 2
+    Worms.character = 1
+    Worms.clock = pygame.time.Clock()
+    Worms.counter = 5
+    pygame.time.set_timer(pygame.USEREVENT, 1000)
+    Worms.turn = 1
+    Worms.player1_turn = True
+    Worms.player2_turn = False
+    Worms.player3_turn = False
+    Worms.player1_character = 1
+    Worms.player2_character = 1
+    Worms.player3_character = 1
+
 def text_objects(text, font):
     text_surface = font.render(text, True, Constant.WHITE)
     return text_surface, text_surface.get_rect()
@@ -84,11 +113,13 @@ def button(txt, x, y, w, h, ic, ac, action=None):
                 Worms.game_settings_screen = True
                 Worms.game_home_screen = False
             elif action == "play":
+                init_characters()
                 Worms.game_playing_screen = True
                 Worms.game_settings_screen = False
             elif action == "return":
                 Worms.game_pause_screen = False
             elif action == "home":
+                reset_game()
                 Worms.game_home_screen = True
                 Worms.game_playing_screen = False
                 Worms.game_pause_screen = False

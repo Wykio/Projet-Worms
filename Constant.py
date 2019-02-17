@@ -2,7 +2,6 @@
 # Auteur: Antoine
 # Modification : Attika et Benoît
 
-import random
 
 # format d'écran de type VGA
 SCREEN_WIDTH = 640
@@ -43,14 +42,6 @@ DARK = 27, 28, 35
 LIGHT_DARK = 94, 97, 112
 LIGHT_GREEN = 43, 187, 173
 INDIGO = 81, 45, 168
-
-# Position de départ personnages
-PLAYER1_START_X = random.randint(40, 600)
-PLAYER1_1_START_X = random.randint(40, 600)
-PLAYER2_START_X = random.randint(40, 600)
-PLAYER2_1_START_X = random.randint(40, 600)
-PLAYER3_START_X = random.randint(40, 600)
-PLAYER3_1_START_X = random.randint(40, 600)
 
 # Constantes grenade
 GRENADE_V0 = 60

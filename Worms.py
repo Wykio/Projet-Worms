@@ -49,7 +49,6 @@ while game_is_open:
     while game_settings_screen:
         EventListener.settings_screen()
 
-    Menu.init_characters()
     while game_playing_screen:
         EventListener.playing_screen()
 

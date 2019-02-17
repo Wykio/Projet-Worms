@@ -32,7 +32,7 @@ class Weapon(Asset):
             if self.shot.rect.colliderect(i.rect) and i is not me:
                 self.is_shooting = False
                 print("hit")
-                i.life_point = 0
+                i.life_point -= 1
             self.time += 0.1
 
     def update_shot_position(self, looking_left, alpha, v0, gravity, wind_force):

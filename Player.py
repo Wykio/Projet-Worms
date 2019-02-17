@@ -21,7 +21,7 @@ class Player(Asset, Textfield):
         self.looking_left = True
         self.is_shooting = False
         self.animationState = 1
-        self.life_point = 1
+        self.life_point = 3
 
     def __str__(self):
         return "{ Player: " + str(self.surface) + " | " + str(self.rect) + " ; Title: " + str(self.title) + " }"
