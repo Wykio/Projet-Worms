@@ -7,6 +7,30 @@ import Init
 import Menu
 import Constant
 
+def pause_screen():
+    import Worms
+    # Boucle d'événement
+    for event in pygame.event.get():
+        # Si on détecte l'événement "quitter"
+        if event.type == pygame.QUIT:
+            # Décharge les modules de la mémoire
+            Init.quit_game()
+            # Quitte le programme
+            sys.exit()
+
+    Worms.screen.blit(Menu.pause_background['surface'], Menu.pause_background['rect'])
+
+    Menu.button("Return", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 - 100, 150, 50, Constant.DARK,
+                Constant.LIGHT_GREEN, "return")
+    Menu.button("Home", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 - 25, 150, 50, Constant.LIGHT_DARK,
+                Constant.LIGHT_GREEN, "home")
+    Menu.button("Quit", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 + 50, 150, 50, Constant.DARK_RED,
+                Constant.LIGHT_GREEN, "quit")
+
+    pygame.display.update()
+    pygame.display.flip()
+
+
 def home_screen():
     import Worms
     # Boucle d'événement
@@ -26,6 +50,7 @@ def home_screen():
 
     pygame.display.update()
     pygame.display.flip()
+
 
 def settings_screen():
     import Worms
@@ -48,9 +73,9 @@ def settings_screen():
         (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 450))
     if Worms.player == 2:
         Menu.button("2", Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.INDIGO,
-                    Constant. LIGHT_GREEN, "2 players")
+                    Constant.LIGHT_GREEN, "2 players")
         Menu.button("3", Constant.SCREEN_WIDTH - 550, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.DARK,
-                    Constant. LIGHT_GREEN, "3 players")
+                    Constant.LIGHT_GREEN, "3 players")
     elif Worms.player == 3:
         Menu.button("2", Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.DARK,
                     Constant.LIGHT_GREEN, "2 players")
@@ -116,6 +141,7 @@ def playing_screen():
             keys = pygame.key.get_pressed()
             if keys[pygame.K_ESCAPE]:
                 if not Worms.game_pause_screen:
+                    print("escape pressed")
                     Menu.game_pause_screen = True
 
             # Gestion des données de calcul de trajectoire
@@ -139,10 +165,10 @@ def playing_screen():
             if Worms.player1_turn:
                 # Gestion des déplacements
                 if keys[pygame.K_a]:
-                        if Worms.player1_character == 1:
-                            Menu.player1character1.move_left()
-                        elif Worms.player1_character == 2:
-                            Menu.player1character2.move_left()
+                    if Worms.player1_character == 1:
+                        Menu.player1character1.move_left()
+                    elif Worms.player1_character == 2:
+                        Menu.player1character2.move_left()
                 if keys[pygame.K_d]:
                     if Worms.player1_character == 1:
                         Menu.player1character1.move_right()
@@ -218,10 +244,10 @@ def playing_screen():
     Worms.screen.fill(Constant.BLACK)
     Worms.screen.blit(Menu.background['surface'], Menu.background['rect'])
 
-    #Dessine le sol
+    # Dessine le sol
     pygame.draw.rect(Worms.screen, Constant.GROUND_COLOR, Constant.GROUND_POSITION)
 
-    #Gestion de plus d'un seul personnage par joueur
+    # Gestion de plus d'un seul personnage par joueur
     if Worms.character == 2:
         if Worms.player1_turn:
             if Worms.player1_character == 1:
@@ -257,7 +283,7 @@ def playing_screen():
                 Menu.button("P2", Constant.SCREEN_WIDTH - 50, Constant.SCREEN_HEIGHT - 35, 30, 30, Constant.INDIGO,
                             Constant.LIGHT_GREEN, "joueur 3 personnage 2")
 
-    # update windforce display
+    # Affichage de l'HUD
     Worms.hud.set_text(
         "[Alpha angle : " + str(Worms.alpha) + "][V0 : " + str(Worms.v0) + "][Gravity : " + str(
             round(Worms.gravity, 2)) + "][Wind force : " + str(Worms.wind_force) + "]",
@@ -266,7 +292,7 @@ def playing_screen():
 
     # Update players
     if Menu.player1character1.life_point:
-        Menu.player1character1.update(Worms.screen, Menu.player1character1,  Menu.all_players, Worms.alpha,
+        Menu.player1character1.update(Worms.screen, Menu.player1character1, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
     if Menu.player1character2.life_point:
         Menu.player1character2.update(Worms.screen, Menu.player1character2, Menu.all_players, Worms.alpha,
@@ -285,11 +311,13 @@ def playing_screen():
                                       Worms.v0, Worms.gravity, Worms.wind_force)
 
     # Affichage du tour
-    Worms.screen.blit(pygame.font.SysFont(pygame.font.get_default_font(), 20).render(str(Worms.turn), True, Constant.WHITE), \
-                     (Constant.SCREEN_WIDTH - 630, Constant.SCREEN_HEIGHT - 475))
+    Worms.screen.blit(
+        pygame.font.SysFont(pygame.font.get_default_font(), 20).render(str(Worms.turn), True, Constant.WHITE),
+        (Constant.SCREEN_WIDTH - 30, Constant.SCREEN_HEIGHT - 475))
     if Worms.counter <= 0:
-        Worms.screen.blit(pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Tour suivant", True, Constant.WHITE), \
-                         (Constant.SCREEN_WIDTH - 630, Constant.SCREEN_HEIGHT - 475))
+        Worms.screen.blit(
+            pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Tour suivant", True, Constant.WHITE),
+            (Constant.SCREEN_WIDTH - 30, Constant.SCREEN_HEIGHT - 475))
 
     # Affichage du timer
     Menu.button(str(Worms.counter), Constant.SCREEN_WIDTH - 635, Constant.SCREEN_HEIGHT - 35, 30, 30,
@@ -297,40 +325,19 @@ def playing_screen():
 
     # Affichage du joueur courant
     if Worms.player1_turn:
-        Worms.screen.blit(pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Joueur 1", True, Constant.WHITE), \
-                          (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
+        Worms.screen.blit(
+            pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Joueur 1", True, Constant.WHITE),
+            (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
     if Worms.player2_turn:
-        Worms.screen.blit(pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Joueur 2", True, Constant.WHITE), \
-                          (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
+        Worms.screen.blit(
+            pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Joueur 2", True, Constant.WHITE),
+            (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
     if Worms.player3_turn:
-        Worms.screen.blit(pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Joueur 3", True, Constant.WHITE), \
-                          (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
+        Worms.screen.blit(
+            pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Joueur 3", True, Constant.WHITE),
+            (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
 
     pygame.display.update()
     pygame.display.flip()
 
     Worms.clock.tick(60)
-
-
-def pause_screen():
-    import Worms
-    # Boucle d'événement
-    for event in pygame.event.get():
-        # Si on détecte l'événement "quitter"
-        if event.type == pygame.QUIT:
-            # Décharge les modules de la mémoire
-            Init.quit_game()
-            # Quitte le programme
-            sys.exit()
-
-    Worms.screen.blit(Menu.pause_background['surface'], Menu.pause_background['rect'])
-
-    Menu.button("Return", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 - 100, 150, 50, Constant.DARK,
-                Constant.LIGHT_GREEN, "return")
-    Menu.button("Home", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 - 25, 150, 50, Constant.LIGHT_DARK,
-                Constant.LIGHT_GREEN, "home")
-    Menu.button("Quit", Constant.SCREEN_WIDTH / 2 - 75, Constant.SCREEN_HEIGHT / 2 + 50, 150, 50, Constant.DARK_RED,
-                Constant.LIGHT_GREEN, "quit")
-
-    pygame.display.update()
-    pygame.display.flip()
