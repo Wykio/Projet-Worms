@@ -195,9 +195,9 @@ def playing_screen():
                         Menu.player3character2.move_left()
                 if keys[pygame.K_d]:
                     if Worms.player3_character == 1:
-                        Menu.player3character1.move_left()
+                        Menu.player3character1.move_right()
                     if Worms.player3_character == 2:
-                        Menu.player3character2.move_left()
+                        Menu.player3character2.move_right()
 
                 # Gestion des armes
                 if keys[pygame.K_q]:
@@ -283,6 +283,28 @@ def playing_screen():
     if Menu.player3character2.life_point:
         Menu.player3character2.update(Worms.screen, Menu.player3character2, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
+
+    # Affichage du tour
+    Worms.screen.blit(pygame.font.SysFont(pygame.font.get_default_font(), 20).render(str(Worms.turn), True, Constant.WHITE), \
+                     (Constant.SCREEN_WIDTH - 630, Constant.SCREEN_HEIGHT - 475))
+    if Worms.counter <= 0:
+        Worms.screen.blit(pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Tour suivant", True, Constant.WHITE), \
+                         (Constant.SCREEN_WIDTH - 630, Constant.SCREEN_HEIGHT - 475))
+
+    # Affichage du timer
+    Menu.button(str(Worms.counter), Constant.SCREEN_WIDTH - 635, Constant.SCREEN_HEIGHT - 35, 30, 30,
+                Constant.LIGHT_DARK, Constant.DARK)
+
+    # Affichage du joueur courant
+    if Worms.player1_turn:
+        Worms.screen.blit(pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Joueur 1", True, Constant.WHITE), \
+                          (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
+    if Worms.player2_turn:
+        Worms.screen.blit(pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Joueur 2", True, Constant.WHITE), \
+                          (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
+    if Worms.player3_turn:
+        Worms.screen.blit(pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Joueur 3", True, Constant.WHITE), \
+                          (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 33))
 
     pygame.display.update()
     pygame.display.flip()
