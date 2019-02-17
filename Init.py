@@ -2,9 +2,7 @@
 # Auteur : Antoine
 
 import pygame
-import Asset
 import Constant
-
 
 def init_game(width, height):
     resolution = (width, height)
@@ -30,7 +28,6 @@ def init_game(width, height):
     # pygame.mouse.set_visible(0)
 
     return screen
-
 
 def quit_game():
     # Décharge de la mémoire le module display de Pygame

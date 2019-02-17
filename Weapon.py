@@ -1,5 +1,6 @@
 # -*-coding:Latin-1 -*
 # Auteur: Antoine
+# Modification : Attika
 
 import math
 import Constant
@@ -18,30 +19,29 @@ class Weapon(Asset):
         self.x0 = 0
         self.y0 = 0
 
-    def update(self, screen, other, looking_left, alpha, v0, gravity, wind_force):
+    def update(self, screen, me, other, looking_left, alpha, v0, gravity, wind_force):
         self.update_shot_position(looking_left, alpha, v0, gravity, wind_force)
         self.shot.set_position(int(self.x), int(self.y))
-        #print("x[" + str(int(self.x)) + "] ,y[" + str(int(self.y)) + "]")
         screen.blit(self.shot.surface, self.shot.rect)
         if (self.shot.rect.right >= Constant.SCREEN_WIDTH) or (self.shot.rect.left <= 0):
             self.is_shooting = False
         if self.shot.rect[1] > Constant.GROUND_LEVEL:
             self.is_shooting = False
-        if self.shot.rect.colliderect(other.rect):
-            self.is_shooting = False
-            print("hit")
-            other.life_point = 0
-        self.time += 0.1
+        for i in other:
+            if self.shot.rect.colliderect(i.rect) and i is not me:
+                self.is_shooting = False
+                print("hit")
+                i.life_point -= 1
+            self.time += 0.1
 
     def update_shot_position(self, looking_left, alpha, v0, gravity, wind_force):
         if looking_left:
             self.x = -v0 * math.cos((alpha * math.pi)/180) * self.time + self.x0
-            self.y = -((gravity / 2) * self.time * self.time) - (
+            self.y = -(((gravity / 2) + wind_force) * self.time * self.time) - (
                         v0 * math.sin((alpha * math.pi)/180) * self.time) + self.y0
-            # print("t[" + str(self.time) + "], " + "x2[" + str(int((-Constant.GRAVITY / 2) * self.time * self.time)) + "] ,x[" + str(int(Constant.GRENADE_V0 * math.sin(Constant.GRENADE_ALPHA_ANGLE) * self.time)) + "]")
         else:
             self.x = v0 * math.cos((alpha * math.pi)/180) * self.time + self.x0
-            self.y = -((gravity / 2) * self.time * self.time) - (
+            self.y = -(((gravity / 2) + wind_force) * self.time * self.time) - (
                     v0 * math.sin((alpha * math.pi)/180) * self.time) + self.y0
 
     def weapon_set_position(self, x, y):
