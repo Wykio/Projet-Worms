@@ -19,7 +19,7 @@ class Weapon(Asset):
         self.x0 = 0
         self.y0 = 0
 
-    def update(self, screen, other, looking_left, alpha, v0, gravity, wind_force):
+    def update(self, screen, me, other, looking_left, alpha, v0, gravity, wind_force):
         self.update_shot_position(looking_left, alpha, v0, gravity, wind_force)
         self.shot.set_position(int(self.x), int(self.y))
         #print("x[" + str(int(self.x)) + "] ,y[" + str(int(self.y)) + "]")
@@ -29,7 +29,7 @@ class Weapon(Asset):
         if self.shot.rect[1] > Constant.GROUND_LEVEL:
             self.is_shooting = False
         for i in other:
-            if self.shot.rect.colliderect(i.rect):
+            if self.shot.rect.colliderect(i.rect) and i is not me:
                 self.is_shooting = False
                 print("hit")
                 i.life_point = 0

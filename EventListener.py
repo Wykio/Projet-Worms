@@ -139,41 +139,77 @@ def playing_screen():
             if Worms.player1_turn:
                 # Gestion des déplacements
                 if keys[pygame.K_a]:
-                    Menu.player1character1.move_left()
+                        if Worms.player1_character == 1:
+                            Menu.player1character1.move_left()
+                        elif Worms.player1_character == 2:
+                            Menu.player1character2.move_left()
                 if keys[pygame.K_d]:
-                    Menu.player1character1.move_right()
+                    if Worms.player1_character == 1:
+                        Menu.player1character1.move_right()
+                    elif Worms.player1_character == 2:
+                        Menu.player1character2.move_right()
 
                 # Gestion des armes
                 if keys[pygame.K_q]:
-                    Menu.player1character1.select_weapon(Worms.screen)
+                    if Worms.player1_character == 1:
+                        Menu.player1character1.select_weapon(Worms.screen)
+                    elif Worms.player1_character == 2:
+                        Menu.player1character2.select_weapon(Worms.screen)
                 if keys[pygame.K_SPACE]:
-                    Menu.player1character1.shoot(Worms.screen)
+                    if Worms.player1_character == 1:
+                        Menu.player1character1.shoot(Worms.screen)
+                    elif Worms.player1_character == 2:
+                        Menu.player1character2.shoot(Worms.screen)
 
             elif Worms.player2_turn:
                 # Gestion des déplacements
                 if keys[pygame.K_a]:
-                    Menu.player2character1.move_left()
+                    if Worms.player2_character == 1:
+                        Menu.player2character1.move_left()
+                    if Worms.player2_character == 2:
+                        Menu.player2character2.move_left()
                 if keys[pygame.K_d]:
-                    Menu.player2character1.move_right()
+                    if Worms.player2_character == 1:
+                        Menu.player2character1.move_right()
+                    if Worms.player2_character == 2:
+                        Menu.player2character2.move_right()
 
                 # Gestion des armes
                 if keys[pygame.K_q]:
-                    Menu.player2character1.select_weapon(Worms.screen)
+                    if Worms.player2_character == 1:
+                        Menu.player2character1.select_weapon(Worms.screen)
+                    if Worms.player2_character == 2:
+                        Menu.player2character2.select_weapon(Worms.screen)
                 if keys[pygame.K_SPACE]:
-                    Menu.player2character1.shoot(Worms.screen)
+                    if Worms.player2_character == 1:
+                        Menu.player2character1.shoot(Worms.screen)
+                    if Worms.player2_character == 2:
+                        Menu.player2character2.shoot(Worms.screen)
 
             elif Worms.player3_turn:
                 # Gestion des déplacements
                 if keys[pygame.K_a]:
-                    Menu.player3character1.move_left()
+                    if Worms.player3_character == 1:
+                        Menu.player3character1.move_left()
+                    if Worms.player3_character == 2:
+                        Menu.player3character2.move_left()
                 if keys[pygame.K_d]:
-                    Menu.player3character1.move_right()
+                    if Worms.player3_character == 1:
+                        Menu.player3character1.move_left()
+                    if Worms.player3_character == 2:
+                        Menu.player3character2.move_left()
 
                 # Gestion des armes
                 if keys[pygame.K_q]:
-                    Menu.player3character1.select_weapon(Worms.screen)
+                    if Worms.player3_character == 1:
+                        Menu.player3character1.select_weapon(Worms.screen)
+                    if Worms.player3_character == 2:
+                        Menu.player3character2.select_weapon(Worms.screen)
                 if keys[pygame.K_SPACE]:
-                    Menu.player3character1.shoot(Worms.screen)
+                    if Worms.player3_character == 1:
+                        Menu.player3character1.shoot(Worms.screen)
+                    if Worms.player3_character == 2:
+                        Menu.player3character2.shoot(Worms.screen)
 
     while Worms.game_pause_screen:
         pause_screen()
@@ -230,22 +266,22 @@ def playing_screen():
 
     # Update players
     if Menu.player1character1.life_point:
-        Menu.player1character1.update(Worms.screen, Menu.all_players, Worms.alpha,
+        Menu.player1character1.update(Worms.screen, Menu.player1character1,  Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
     if Menu.player1character2.life_point:
-        Menu.player1character2.update(Worms.screen, Menu.all_players, Worms.alpha,
+        Menu.player1character2.update(Worms.screen, Menu.player1character2, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
     if Menu.player2character1.life_point:
-        Menu.player2character1.update(Worms.screen, Menu.all_players, Worms.alpha,
+        Menu.player2character1.update(Worms.screen, Menu.player2character1, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
     if Menu.player2character2.life_point:
-        Menu.player2character2.update(Worms.screen, Menu.all_players, Worms.alpha,
+        Menu.player2character2.update(Worms.screen, Menu.player2character2, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
     if Menu.player3character1.life_point:
-        Menu.player3character1.update(Worms.screen, Menu.all_players, Worms.alpha,
+        Menu.player3character1.update(Worms.screen, Menu.player3character1, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
     if Menu.player3character2.life_point:
-        Menu.player3character2.update(Worms.screen, Menu.all_players, Worms.alpha,
+        Menu.player3character2.update(Worms.screen, Menu.player3character2, Menu.all_players, Worms.alpha,
                                       Worms.v0, Worms.gravity, Worms.wind_force)
 
     pygame.display.update()
