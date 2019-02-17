@@ -8,6 +8,7 @@ def pause_screen():
     import Init
     import Constant
     import Asset
+    import Menu
 
     # Boucle d'événement
     for event in pygame.event.get():
@@ -17,8 +18,6 @@ def pause_screen():
             Init.quit_game()
             # Quitte le programme
             sys.exit()
-
-    # screen.fill(Constant.WHITE)
 
     # Affichage de l'image de pause
     Worms.screen.blit(Asset.pause_background['surface'], Asset.pause_background['rect'])
@@ -31,6 +30,7 @@ def pause_screen():
 
     # Mise à jour de l'affichage
     pygame.display.update()
+
     # Affiche l'image
     pygame.display.flip()
 
@@ -42,6 +42,7 @@ def settings_screen():
     import Init
     import Constant
     import Asset
+    import Menu
 
     # Boucle d'événement
     for event in pygame.event.get():
@@ -51,8 +52,6 @@ def settings_screen():
             Init.quit_game()
             # Quitte le programme
             sys.exit()
-
-    # screen.fill(Constant.WHITE)
 
     # Affichage de l'image de settings
     Worms.screen.blit(Asset.pause_background['surface'], Asset.pause_background['rect'])
@@ -92,6 +91,7 @@ def home_screen():
     import Init
     import Constant
     import Asset
+    import Menu
 
     # Boucle d'événement
     for event in pygame.event.get():
@@ -101,8 +101,6 @@ def home_screen():
             Init.quit_game()
             # Quitte le programme
             sys.exit()
-
-    # screen.fill(Constant.WHITE)
 
     # Affichage de l'image de l'accueil
     Worms.screen.blit(Asset.home_background['surface'], Asset.home_background['rect'])
@@ -125,6 +123,7 @@ def playing_screen():
     import Constant
     import Asset
     import Animation
+    import Menu
 
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
@@ -166,6 +165,7 @@ def playing_screen():
             sys.exit()
 
         if event.type == pygame.KEYDOWN:
+            # Ouvrir le menu pause
             if event.key == pygame.K_ESCAPE:
                 if not Worms.game_pause_screen:
                     Worms.game_pause_screen = True
@@ -174,36 +174,112 @@ def playing_screen():
             if Worms.player1_turn:
                 if Worms.player1_character == 1:
                     if event.key == pygame.K_a:
-                        Asset.player1 = Animation.player_move_left(Asset.player1Character1)
+                        player1_character1.move_left()
                     if event.key == pygame.K_d:
-                        Asset.player1 = Animation.player_move_right(Asset.player1Character1)
+                        player1_character1.move_right()
+                    if event.key == pygame.K_q:
+                        # On change le repeat key temporairement pour pas que ca spam les grenades autant que les déplacements
+                        pygame.key.set_repeat(500, 30)
+                        player1_character1.select_weapon(screen)
+                        pygame.key.set_repeat(30, 30)
+                    if event.key == pygame.K_SPACE:
+                        pygame.key.set_repeat(500, 30)
+                        player1_character1.shoot(screen)
+                        pygame.key.set_repeat(30, 30)
                 elif Worms.player1_character == 2:
                     if event.key == pygame.K_a:
-                        Asset.player1 = Animation.player_move_left(Asset.player1Character2)
+                        player1_character2.move_left()
                     if event.key == pygame.K_d:
-                        Asset.player1 = Animation.player_move_right(Asset.player1Character2)
+                        player1_character2.move_right()
+                    if event.key == pygame.K_q:
+                        # On change le repeat key temporairement pour pas que ca spam les grenades autant que les déplacements
+                        pygame.key.set_repeat(500, 30)
+                        player1_character2.select_weapon(screen)
+                        pygame.key.set_repeat(30, 30)
+                    if event.key == pygame.K_SPACE:
+                        pygame.key.set_repeat(500, 30)
+                        player1_character2.shoot(screen)
+                        pygame.key.set_repeat(30, 30)
             elif Worms.player2_turn:
                 if Worms.player2_character == 1:
                     if event.key == pygame.K_LEFT:
-                        Asset.player2 = Animation.player_move_left(Asset.player2Character1)
+                        player2_character1.move_left()
                     if event.key == pygame.K_RIGHT:
-                        Asset.player2 = Animation.player_move_right(Asset.player2Character1)
+                        player2_character1.move_right()
+                    if event.key == pygame.K_q:
+                        # On change le repeat key temporairement pour pas que ca spam les grenades autant que les déplacements
+                        pygame.key.set_repeat(500, 30)
+                        player2_character1.select_weapon(screen)
+                        pygame.key.set_repeat(30, 30)
+                    if event.key == pygame.K_SPACE:
+                        pygame.key.set_repeat(500, 30)
+                        player2_character1.shoot(screen)
+                        pygame.key.set_repeat(30, 30)
                 elif Worms.player2_character == 2:
                     if event.key == pygame.K_LEFT:
-                        Asset.player2 = Animation.player_move_left(Asset.player2Character2)
+                        player2_character2.move_left()
                     if event.key == pygame.K_RIGHT:
-                        Asset.player2 = Animation.player_move_right(Asset.player2Character2)
+                        player2_character2.move_right()
+                    if event.key == pygame.K_q:
+                        # On change le repeat key temporairement pour pas que ca spam les grenades autant que les déplacements
+                        pygame.key.set_repeat(500, 30)
+                        player2_character2.select_weapon(screen)
+                        pygame.key.set_repeat(30, 30)
+                    if event.key == pygame.K_SPACE:
+                        pygame.key.set_repeat(500, 30)
+                        player2_character2.shoot(screen)
+                        pygame.key.set_repeat(30, 30)
             elif Worms.player3_turn:
                 if Worms.player3_character == 1:
                     if event.key == pygame.K_j:
-                        Asset.player3 = Animation.player_move_left(Asset.player3Character1)
+                        player3_character1.move_left()
                     if event.key == pygame.K_l:
-                        Asset.player3 = Animation.player_move_right(Asset.player3Character1)
+                        player3_character1.move_right()
+                    if event.key == pygame.K_q:
+                        # On change le repeat key temporairement pour pas que ca spam les grenades autant que les déplacements
+                        pygame.key.set_repeat(500, 30)
+                        player3_character1.select_weapon(screen)
+                        pygame.key.set_repeat(30, 30)
+                    if event.key == pygame.K_SPACE:
+                        pygame.key.set_repeat(500, 30)
+                        player3_character1.shoot(screen)
+                        pygame.key.set_repeat(30, 30)
                 elif Worms.player3_character == 2:
                     if event.key == pygame.K_j:
-                        Asset.player3 = Animation.player_move_left(Asset.player3Character2)
+                        player3_character2.move_left()
                     if event.key == pygame.K_l:
-                        Asset.player3 = Animation.player_move_right(Asset.player3Character2)
+                        player3_character2.move_right()
+                    if event.key == pygame.K_q:
+                        # On change le repeat key temporairement pour pas que ca spam les grenades autant que les déplacements
+                        pygame.key.set_repeat(500, 30)
+                        player3_character2.select_weapon(screen)
+                        pygame.key.set_repeat(30, 30)
+                    if event.key == pygame.K_SPACE:
+                        pygame.key.set_repeat(500, 30)
+                        player3_character2.shoot(screen)
+                        pygame.key.set_repeat(30, 30)
+
+                if event.key == pygame.K_r:
+                    alpha += 1
+                    #player1.bazooka.weapon.surface = pygame.transform.rotate(player1.bazooka.weapon.surface, 1)
+                if event.key == pygame.K_f:
+                    alpha -= 1
+                    #player1.bazooka.weapon.surface = pygame.transform.rotate(player1.bazooka.weapon.surface, -1)
+
+                if event.key == pygame.K_t:
+                    v0 += 1
+                if event.key == pygame.K_g:
+                    v0 -= 1
+
+                if event.key == pygame.K_y:
+                    gravity += 1
+                if event.key == pygame.K_h:
+                    gravity -= 1
+
+                if event.key == pygame.K_u:
+                    wind_force += 1
+                if event.key == pygame.K_j:
+                    wind_force -= 1
 
     while Worms.game_pause_screen:
         pause_screen()
@@ -219,12 +295,24 @@ def playing_screen():
         if Worms.player == 3:
             Animation.update_player_title(Asset.player3Character2, Asset.player3_character2_title)
 
-    # Efface l'image
-    Worms.screen.fill(Constant.BLACK)
-    # Affichage de l'image de jeu
-    Worms.screen.blit(Asset.background['surface'], Asset.background['rect'])
+    # Efface l'image et affiche le fond
+    background.update(screen)
+
     # Dessine le sol
-    pygame.draw.rect(Worms.screen, Constant.GROUND_COLOR, Constant.GROUND_POSITION)
+    pygame.draw.rect(screen, Constant.GROUND_COLOR, Constant.GROUND_POSITION)
+
+    # update windforce display
+    hud.set_text(
+        "[Alpha angle : " + str(alpha) + "][V0 : " + str(v0) + "][Gravity : " + str(
+            round(gravity, 2)) + "][Wind force : " + str(wind_force) + "]",
+        Constant.BLACK)
+    hud.update(screen)
+
+    # Update players
+    if player1_character1.life_point:
+        player1_character1.update(screen, player2_character1, alpha, v0, gravity, wind_force)
+    if player2_character1.life_point:
+        player2_character1.update(screen, player1_character1, alpha, v0, gravity, wind_force)
 
     # Sélection du personnage du joueur
     if Worms.character == 2:
@@ -292,6 +380,9 @@ def playing_screen():
 
     # Affiche l'image
     pygame.display.flip()
+
+    # temp
+    pygame.time.wait(5)
 
     # Clock tick
     Worms.clock.tick(60)
