@@ -315,11 +315,11 @@ def playing_screen():
     # Affichage du tour
     Worms.screen.blit(
         pygame.font.SysFont(pygame.font.get_default_font(), 20).render(str(Worms.turn), True, Constant.WHITE),
-        (Constant.SCREEN_WIDTH - 30, Constant.SCREEN_HEIGHT - 475))
+        (Constant.SCREEN_WIDTH - 100, Constant.SCREEN_HEIGHT - 475))
     if Worms.counter <= 0:
         Worms.screen.blit(
             pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Tour suivant", True, Constant.WHITE),
-            (Constant.SCREEN_WIDTH - 30, Constant.SCREEN_HEIGHT - 475))
+            (Constant.SCREEN_WIDTH - 100, Constant.SCREEN_HEIGHT - 475))
 
     # Affichage du timer
     Menu.button(str(Worms.counter), Constant.SCREEN_WIDTH - 635, Constant.SCREEN_HEIGHT - 35, 30, 30,
