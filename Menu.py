@@ -12,14 +12,17 @@ home_background = {'surface': None, 'rect': None}
 pause_background = {'surface': None, 'rect': None}
 
 gameSprite = Asset(pygame.image.load("Assets/player_sprite_35x35.gif"))
-player1 = Player("Player 1", Constant.RED, gameSprite)
-player2 = Player("Player 2", Constant.BLUE, gameSprite)
+player1character1 = Player("Player 1_1", Constant.RED, gameSprite)
+player1character2 = Player("Player 1_2", Constant.RED, gameSprite)
+player2character1 = Player("Player 2_1", Constant.BLUE, gameSprite)
+player2character2 = Player("Player 2_2", Constant.BLUE, gameSprite)
+player3character1 = Player("Player 3_1", Constant.GREEN, gameSprite)
+player3character2 = Player("Player 3_2", Constant.GREEN, gameSprite)
+all_players = {player1character1, player1character2, player2character1,
+               player2character2, player3character1, player3character2}
 
 def init_game():
     import Worms
-    # x = moitié de l'écran, y de la position du sol - taille du sprite
-    player1.set_position(Constant.PLAYER1_START_X, Constant.GROUND_POSITION[1] - 35)
-    player2.set_position(Constant.PLAYER2_START_X, Constant.GROUND_POSITION[1] - 35)
     load_game()
     Worms.game_is_open = True
     Worms.game_home_screen = True
@@ -31,6 +34,27 @@ def load_game():
     init_background()
     init_home_background()
     init_pause_background()
+
+def init_characters():
+    player1character1.set_position(Constant.PLAYER1_START_X, Constant.GROUND_POSITION[1] - 35)
+    player1character2.set_position(Constant.PLAYER1_1_START_X, Constant.GROUND_POSITION[1] - 35)
+    player2character1.set_position(Constant.PLAYER2_START_X, Constant.GROUND_POSITION[1] - 35)
+    player2character2.set_position(Constant.PLAYER2_1_START_X, Constant.GROUND_POSITION[1] - 35)
+    player3character1.set_position(Constant.PLAYER3_START_X, Constant.GROUND_POSITION[1] - 35)
+    player3character2.set_position(Constant.PLAYER3_1_START_X, Constant.GROUND_POSITION[1] - 35)
+    erase_useless_players()
+    pygame.display.update()
+    pygame.display.flip()
+
+def erase_useless_players():
+    import Worms
+    if Worms.player == 2:
+        player3character1.life_point = 0
+        player3character2.life_point = 0
+    if Worms.character == 1:
+        player1character2.life_point = 0
+        player2character2.life_point = 0
+        player3character2.life_point = 0
 
 def init_background():
     background['surface'] = pygame.image.load("Assets/beach_background.gif")

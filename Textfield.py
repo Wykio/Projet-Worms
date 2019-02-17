@@ -6,7 +6,7 @@ pygame.init()
 
 class Textfield:
     def __init__(self, title, color):
-        self.font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
+        self.font = pygame.font.SysFont(pygame.font.get_default_font(), 20)
         self.surface = self.font.render(title, False, color)
         self.rect = self.surface.get_rect()
 

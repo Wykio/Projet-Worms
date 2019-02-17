@@ -49,21 +49,9 @@ while game_is_open:
     while game_settings_screen:
         EventListener.settings_screen()
 
+    Menu.init_characters()
     while game_playing_screen:
         EventListener.playing_screen()
-
-        # update windforce display
-        hud.set_text(
-            "[Alpha angle : " + str(alpha) + "][V0 : " + str(v0) + "][Gravity : " + str(
-                round(gravity, 2)) + "][Wind force : " + str(wind_force) + "]",
-            Constant.BLACK)
-        hud.update(screen)
-
-        # Update players
-        if Menu.player1.life_point:
-            Menu.player1.update(screen, Menu.player2, alpha, v0, gravity, wind_force)
-        if Menu.player2.life_point:
-            Menu.player2.update(screen, Menu.player1, alpha, v0, gravity, wind_force)
 
         # temp
         pygame.time.wait(5)

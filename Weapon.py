@@ -1,5 +1,6 @@
 # -*-coding:Latin-1 -*
 # Auteur: Antoine
+# Modification : Attika
 
 import math
 import Constant
@@ -27,11 +28,12 @@ class Weapon(Asset):
             self.is_shooting = False
         if self.shot.rect[1] > Constant.GROUND_LEVEL:
             self.is_shooting = False
-        if self.shot.rect.colliderect(other.rect):
-            self.is_shooting = False
-            print("hit")
-            other.life_point = 0
-        self.time += 0.1
+        for i in other:
+            if self.shot.rect.colliderect(i.rect):
+                self.is_shooting = False
+                print("hit")
+                i.life_point = 0
+            self.time += 0.1
 
     def update_shot_position(self, looking_left, alpha, v0, gravity, wind_force):
         if looking_left:
