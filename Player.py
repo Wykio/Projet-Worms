@@ -1,5 +1,6 @@
 # -*-coding:Latin-1 -*
 # Auteur: Antoine
+# Modification : Attika
 
 import pygame
 import Constant
@@ -78,7 +79,7 @@ class Player(Asset, Textfield):
             self.weapon_select = 0
 
     def update_weapon(self, screen, me, other, alpha, v0, gravity, wind_force):
-        #Gestion de la grenade
+        # Gestion de la grenade
         if self.weapon_select == 1:
             self.grenade.weapon_set_position(self.rect[0] + 7, self.rect[1] + 15)
             if self.looking_left:
@@ -87,7 +88,7 @@ class Player(Asset, Textfield):
                 screen.blit(self.grenade.weapon.surface, self.grenade.weapon.rect)
             if self.grenade.is_shooting:
                 self.grenade.update(screen, me, other, self.looking_left, alpha, v0, gravity, wind_force)
-        #Gestion du Bazooka
+        # Gestion du Bazooka
         if self.weapon_select == 2:
             self.bazooka.weapon_set_position(self.rect[0] - 10, self.rect[1])
             if self.looking_left:
@@ -101,7 +102,6 @@ class Player(Asset, Textfield):
         if self.weapon_select == 1:
             self.grenade.is_shooting = True
             self.grenade.time = 0.0
-            #self.grenade.shot_set_position(self.rect[0] + 7, self.rect[1] + 15)
             self.grenade.x0 = self.rect[0] + 7
             self.grenade.y0 = self.rect[1] + 15
         if self.weapon_select == 2:
