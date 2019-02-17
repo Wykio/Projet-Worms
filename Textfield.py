@@ -2,8 +2,7 @@
 # Auteur: Antoine
 
 import pygame
-import Constant
-
+pygame.init()
 
 class Textfield:
     def __init__(self, title, color):

@@ -20,8 +20,8 @@ class Player(Asset, Textfield):
         self.bazooka = Weapon(sprite_sheet.surface.subsurface(Constant.BAZOOKA_RECT), sprite_sheet.surface.subsurface(Constant.ROCKET_RECT))
         self.looking_left = True
         self.is_shooting = False
-        self.animationState = 1;
-        self.life_point = 1;
+        self.animationState = 1
+        self.life_point = 1
 
     def __str__(self):
         return "{ Player: " + str(self.surface) + " | " + str(self.rect) + " ; Title: " + str(self.title) + " }"
