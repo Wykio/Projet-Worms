@@ -31,7 +31,7 @@ hud = Textfield(None, Constant.BLACK)
 player = 2
 character = 1
 clock = pygame.time.Clock()
-counter = 5
+counter = 20
 pygame.time.set_timer(pygame.USEREVENT, 1000)
 turn = 1
 player1_turn = True

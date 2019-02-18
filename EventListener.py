@@ -181,13 +181,17 @@ def playing_screen():
                 if keys[pygame.K_q]:
                     if Worms.player1_character == 1:
                         Menu.player1character1.select_weapon(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
                     elif Worms.player1_character == 2:
                         Menu.player1character2.select_weapon(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
                 if keys[pygame.K_SPACE]:
                     if Worms.player1_character == 1:
                         Menu.player1character1.shoot(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
                     elif Worms.player1_character == 2:
                         Menu.player1character2.shoot(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
 
             elif Worms.player2_turn:
                 # Gestion des déplacements
@@ -206,13 +210,17 @@ def playing_screen():
                 if keys[pygame.K_q]:
                     if Worms.player2_character == 1:
                         Menu.player2character1.select_weapon(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
                     if Worms.player2_character == 2:
                         Menu.player2character2.select_weapon(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
                 if keys[pygame.K_SPACE]:
                     if Worms.player2_character == 1:
                         Menu.player2character1.shoot(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
                     if Worms.player2_character == 2:
                         Menu.player2character2.shoot(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
 
             elif Worms.player3_turn:
                 # Gestion des déplacements
@@ -231,13 +239,17 @@ def playing_screen():
                 if keys[pygame.K_q]:
                     if Worms.player3_character == 1:
                         Menu.player3character1.select_weapon(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
                     if Worms.player3_character == 2:
                         Menu.player3character2.select_weapon(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
                 if keys[pygame.K_SPACE]:
                     if Worms.player3_character == 1:
                         Menu.player3character1.shoot(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
                     if Worms.player3_character == 2:
                         Menu.player3character2.shoot(Worms.screen)
+                        pygame.key.set_repeat(500, 30)
 
     while Worms.game_pause_screen:
         pause_screen()
