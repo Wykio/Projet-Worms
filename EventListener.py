@@ -157,7 +157,7 @@ def playing_screen():
                 Worms.v0 -= 1
             if keys[pygame.K_y]:
                 Worms.gravity += 1
-            if keys[pygame.K_y]:
+            if keys[pygame.K_h]:
                 Worms.gravity -= 1
             if keys[pygame.K_u]:
                 Worms.wind_force += 1
