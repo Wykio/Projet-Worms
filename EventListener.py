@@ -72,7 +72,7 @@ def settings_screen():
                 Constant.LIGHT_GREEN, "home")
 
     Worms.screen.blit(
-        pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Nombre de joueurs", True, Constant.WHITE),
+        pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Nombre de joueurs", True, Constant.DARK_RED),
         (Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 450))
     if Worms.player == 2:
         Menu.button("2", Constant.SCREEN_WIDTH - 600, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.INDIGO,
@@ -86,7 +86,7 @@ def settings_screen():
                     Constant.LIGHT_GREEN, "3 players")
 
     Worms.screen.blit(
-        pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Nombre de personnages", True, Constant.WHITE),
+        pygame.font.SysFont(pygame.font.get_default_font(), 20).render("Nombre de personnages", True, Constant.DARK_RED),
         (Constant.SCREEN_WIDTH - 260, Constant.SCREEN_HEIGHT - 450))
     if Worms.character == 1:
         Menu.button("1", Constant.SCREEN_WIDTH - 260, Constant.SCREEN_HEIGHT - 400, 30, 30, Constant.INDIGO,
@@ -116,7 +116,7 @@ def playing_screen():
         if event.type == pygame.USEREVENT:
             # Contrôle du timer
             if Worms.counter <= 0:
-                Worms.counter = 6
+                Worms.counter = 21
                 Worms.turn += 1
                 if Worms.player == 2:
                     if Worms.player1_turn:

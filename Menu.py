@@ -87,7 +87,7 @@ def reset_game():
     Worms.player = 2
     Worms.character = 1
     Worms.clock = pygame.time.Clock()
-    Worms.counter = 5
+    Worms.counter = 21
     pygame.time.set_timer(pygame.USEREVENT, 1000)
     Worms.turn = 1
     Worms.player1_turn = True
